@@ -1,1 +1,15 @@
 @import "{{ site.theme }}";
+
+.mason .page-header {
+  background-color: #99153f;
+  background-image: linear-gradient(120deg, #99153f, #997315); 
+}
+
+.mason .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
+  color: #993922;
+}
+
+.mason a {
+  color: #99153f;
+  text-decoration: none;
+}
