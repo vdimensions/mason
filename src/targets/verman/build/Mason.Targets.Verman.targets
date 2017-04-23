@@ -1,0 +1,5 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="UpdateVersions" AfterTargets="AfterBuild">
+    <Exec Command="&quot;$(MSBuildThisFileDirectory)..\tools\mason-verman.exe&quot; $(ProjectDir) $(ProjectName)$(ProjectExt)" />
+  </Target>
+</Project>

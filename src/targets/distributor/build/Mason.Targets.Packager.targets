@@ -1,0 +1,5 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="DistributeBuildResults" AfterTargets="AfterBuild">
+    <Exec Command="&quot;$(MSBuildThisFileDirectory)..\tools\mason-packager.exe&quot; $(ProjectDir) $(ProjectName)$(ProjectExt)" />
+  </Target>
+</Project>

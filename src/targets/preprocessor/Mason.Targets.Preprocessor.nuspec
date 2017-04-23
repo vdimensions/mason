@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package >
+  <metadata>
+    <id>Mason.Targets.Preprocessor</id>
+    <title>Mason.Targets.Preprocessor</title>
+    <version>0.1.1.5</version>
+    <description>Mason MSBuild target for template preprocessing</description>
+    <summary>Mason MSBuild target for template preprocessing</summary>
+    <tags>Mason.Targets.Preprocessor</tags>
+    <releaseNotes></releaseNotes>
+    <!--
+    <projectUrl>https://nuget.org/packages/Mason.Targets.Preprocessor</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+     -->
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Ivaylo Slavov</authors>
+    <owners>Ivaylo Slavov</owners>
+    <copyright>Copyright © Ivaylo Slavov 2017</copyright>
+    <dependencies></dependencies>
+    <frameworkAssemblies></frameworkAssemblies>
+    <references></references>
+  </metadata>
+  <files>
+    <file src="build\*.targets" target="build" />
+    <file src="tools\*.*"       target="tools" />
+  </files>
+</package>

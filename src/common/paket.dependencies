@@ -1,0 +1,3 @@
+source ../../dist
+  nuget Mason.Targets.Preprocessor
+  nuget Mason.Targets.Verman
