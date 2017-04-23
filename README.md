@@ -50,7 +50,7 @@ In order to be recognized by mason, the template file must end with the `.templa
 
 During the `PreBuild` phase of your project, mason will locate all template files contained inside the project directory and its subdirectories, and will expand the expressions they may contain. This produces an *"expanded file"* which is placed beside its corresponding template. The *expanded file* has **exactly** the same name as that part of the template file which preceeds the `.template` extension. If a file that has the same name as the expaned file exists, it will be overwritten (which is actually the desired goal).
 
-So, if we take the example `mason.properties` file from the above section, we could now use it to keep our nuget spec file and our AssemblyInfo file in sunc.
+So, if we take the example `mason.properties` file from the above section, we could now use it to keep our nuget spec file and our AssemblyInfo file in sync.
 
 To do this, we would have to create a `YourGreatProjectName.nuspec.template` file and use the expression syntax to populate the relevant properties. Below is an exceprt of the respective rows (**not** the entire nuspec template):
 
