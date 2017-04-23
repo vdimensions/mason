@@ -30,7 +30,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="Properties\.gitignore" />
     <Compile Include="FileSystem.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Config\AbstractBuildConfig.cs" />
