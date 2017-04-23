@@ -2,7 +2,7 @@
 
 ## What is mason?  
 
-This project was born out of my day-to-day struggle in managing my project's versioning and packaging processes. It answered the need for a consistent and easy-to-manage way to increase versions, create nuget packages and keep project metadata (like assembly title, project id, copyright, license and etc.) aligned between the package description and the project build artefact (AssemblyInfo), as well as automatic version incrementing on build. 
+This project was born out of my day-to-day struggle in managing my project's versioning and packaging processes. It answered the need for a consistent and easy-to-manage way to increase versions, create nuget packages and keep project metadata (like assembly title, project id, copyright, license and etc.) aligned between the package description and the project build artefact (AssemblyInfo). 
 
 At the current state *mason* consists of 3 separate tools:
 
@@ -10,7 +10,7 @@ At the current state *mason* consists of 3 separate tools:
  - verman
  - packager
 
-The tools are bundled each into a respective MSBuild target, which means one just needs to install the target's relevant nuget package in order for the given tool start working on the target project. 
+The tools are bundled each into a respective MSBuild target, which means one just needs to install the target's relevant nuget package in order for the given tool start working on the given project. 
 
 There is no dependency among the tools themselves, you are free to use only one or all of the above. Continue reading to discover each tool purpose and specific configuration. 
 
