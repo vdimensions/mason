@@ -48,7 +48,7 @@ What matters here, is that in the template files one may include expressions -- 
 
 In order to be recognized by mason, the template file must end with the `.template` extension.
 
-During the `PreBuild` phase of your project, mason will locate all template files contained inside the project directory and its subdirectories, and will expand the expressions they may contain. This produces an *"expanded file"* which is placed beside its corresponding template. The *expanded file* has **exactly** the same name as that part of the template file which preceeds the `.template` extension. If a file that has the same name as the expaned file exists, it will be overwritten (which is actually the desired goal).
+During the `PreBuild` phase of your project, mason will locate all template files contained inside the project directory and its subdirectories, and will *expand* the expressions they may contain. This produces an **expanded file** which is placed beside its corresponding template. The expanded file has *exactly* the same name as that part of the template file which preceeds the `.template` extension. If a file that has the same name as the expaned file exists, it will be overwritten (which is actually the desired goal).
 
 So, if we take the example `mason.properties` file from the above section, we could now use it to keep our nuget spec file and our AssemblyInfo file in sync.
 
