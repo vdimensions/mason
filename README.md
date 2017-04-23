@@ -1,5 +1,6 @@
 # Welcome to the **mason** project
 
+
 ## What is mason?  
 
 This project was born out of my day-to-day struggle in managing the versioning and packaging process for my own projects. It answered the need for a consistent and easy-to-manage way to increase versions, create nuget packages and keep project metadata (like assembly title, project id, copyright, license and etc.) aligned between the package description and the project build artefact (AssemblyInfo). 
@@ -34,14 +35,14 @@ The purpose of mason properties is to contain your project settings. For example
     author = "Your name or your company name"
     copyright = "Copyright (c) ${author} YEAR"
 
+
 ## Mason Preprocessor
 
-The mason preprocessor tool allows you to reuse project specific settings on more that one place in the project where the same setting is needed. Good candidates for such properties are the ones in the above example -- one may need to specify the project's version to more than a single place during the build and packaging process.
+The mason preprocessor tool allows you to reuse project specific settings on more that one place in the project where the same setting is needed. Good candidates for such properties are the ones in the above example -- for instance, one may need to use the project's version during the build as well as during the packaging process.
 
-You may have noticed some expressions between `${` and `}` sumbols. These expressions get substituted by a property value or environment variable having the name equal to the contents of the expression. For instance `${USER}` will return the current operating system's user name, because most OS define such an environment variable.
+You may have noticed some *expressions* between `${` and `}` sumbols in the above example. These expressions get substituted by a property value or environment variable having the name equal to the contents of the expression. For instance `${USER}` will return the current operating system's user name, because most OS-es define an environment variable `USER` holding the current operating system's account name.
 
-So, what is the purpose of this? How do we benefit from the properties? 
-They are used in mason templates.
+In order to benefit from the different values we specify in the `mason.properties`, we need to understand mason templates.
 
 ### Mason templates
 
@@ -50,7 +51,7 @@ What matters here, is that in the template files one may include expressions -- 
 
 In order to be recognized by mason, the template file must end with the `.template` extension.
 
-During the `PreBuild` phase of your project, mason will locate all template files contained inside the project directory and its subdirectories, and will *expand* the expressions they may contain. This produces an **expanded file** which is placed beside its corresponding template. The expanded file has *exactly* the same name as that part of the template file which preceeds the `.template` extension. If a file that has the same name as the expaned file exists, it will be overwritten (which is actually the desired goal).
+During the `BeforeBuild` phase of your project, mason will locate all template files contained inside the project directory and its subdirectories, and will *expand* the expressions they may contain. This produces an **expanded file** which is placed beside its corresponding template. The expanded file has *exactly* the same name as that part of the template file which preceeds the `.template` extension. If a file that has the same name as the expaned file exists, it will be overwritten (which is actually the desired goal).
 
 So, if we take the example `mason.properties` file from the above section, we could now use it to keep our nuget spec file and our AssemblyInfo file in sync.
 
@@ -92,6 +93,7 @@ Because the substitution occurs before the actual build process takes place, the
 
 > Beware! Instead of editing the expanded file, update its corresponding template file. Otherwise the changes will be overwritten when the file is expaned again. A good approach is to include a short notice in the beginning of the template file saying the file is automatically regenerated and user changes could be lost.
 
+
 ## Mason Version Manager
 
 The version manager tool is triggered during the `AfterBuild` phase. Its purpose is to increase the project's version by updating the relevant `mason.properties` file. 
@@ -105,6 +107,7 @@ At the current state, mason supports only incremental version updaes. In order t
        mason-verman.version-property-to-update = "version.build"
 
    Now, mason will look for the `version.build` property and will increase its value after a successful build.
+
 
 ## Mason Packager
 
