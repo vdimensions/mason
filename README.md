@@ -2,7 +2,7 @@
 
 ## What is mason?  
 
-This project was born out of my day-to-day struggle in managing my project's versioning and packaging processes. It answered the need for a consistent and easy-to-manage way to increase versions, create nuget packages and keep project metadata (like assembly title, project id, copyright, license and etc.) aligned between the package description and the project build artefact (AssemblyInfo). 
+This project was born out of my day-to-day struggle in managing the versioning and packaging process for my own projects. It answered the need for a consistent and easy-to-manage way to increase versions, create nuget packages and keep project metadata (like assembly title, project id, copyright, license and etc.) aligned between the package description and the project build artefact (AssemblyInfo). 
 
 At the current state *mason* consists of 3 separate tools:
 
@@ -14,9 +14,7 @@ The tools are bundled each into a respective MSBuild target, which means one jus
 
 There is no dependency among the tools themselves, you are free to use only one or all of the above. Continue reading to discover each tool purpose and specific configuration. 
 
-## Mason Preprocessor
-
-The mason preprocessor tool allows you to keep project specific settings in a common place. This place is the `mason.properties` file. 
+Before dealing with details about the separate tools, there is one more important concept for mason's workings -- the `mason.properties` file.
 
 ### Mason properties
 
@@ -35,6 +33,10 @@ The purpose of mason properties is to contain your project settings. For example
     description = "Your great project's description"
     author = "Your name or your company name"
     copyright = "Copyright (c) ${author} YEAR"
+
+## Mason Preprocessor
+
+The mason preprocessor tool allows you to reuse project specific settings on more that one place in the project where the same setting is needed. Good candidates for such properties are the ones in the above example -- one may need to specify the project's version to more than a single place during the build and packaging process.
 
 You may have noticed some expressions between `${` and `}` sumbols. These expressions get substituted by a property value or environment variable having the name equal to the contents of the expression. For instance `${USER}` will return the current operating system's user name, because most OS define such an environment variable.
 
