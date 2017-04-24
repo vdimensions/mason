@@ -5,7 +5,9 @@
 
 .mason .page-header {
   background-color: #99153f;
-  background-image: linear-gradient(120deg, #99153f, #997315); 
+  background-image: linear-gradient(120deg, rgba(163,21,63,0.83),rgba(153,97,39,0.97)), url("../img/red-brick-wall.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .mason .main-content h1, .main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
