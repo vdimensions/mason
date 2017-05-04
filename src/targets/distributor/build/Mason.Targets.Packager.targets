@@ -1,5 +1,13 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MonoPath Condition="'$(MonoPath)' == '' And Exists('/Library/Frameworks/Mono.framework/Commands/mono')">/Library/Frameworks/Mono.framework/Commands/mono</MonoPath>
+    <MonoPath Condition="'$(MonoPath)' == ''">mono</MonoPath>
+
+    <CommandPrefix Condition=" '$(OS)' == 'Windows_NT'"></PaketCommand>
+    <CommandPrefix Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319</PaketCommand>
+  </PropertyGroup>
+
   <Target Name="DistributeBuildResults" AfterTargets="AfterBuild">
-    <Exec Command="&quot;$(MSBuildThisFileDirectory)..\tools\mason-packager.exe&quot; $(ProjectDir) $(ProjectName)$(ProjectExt)" />
+    <Exec Command="$(CommandPrefix) &quot;$(MSBuildThisFileDirectory)..\tools\mason-packager.exe&quot; $(ProjectDir) $(ProjectName)$(ProjectExt)" />
   </Target>
 </Project>
