@@ -22,10 +22,16 @@ namespace Mason.Packaging
             Directory.SetCurrentDirectory(location);
             var config = BuildConfiguration.Get(location, projectName, encoding);
             var projectPackageConfig = Path.Combine(location, string.Format("{0}.{1}", projectName, PackageIncludeFile));
-           
-            ProcessPackageIncludes(location, projectName, projectPackageConfig, config, encoding);
-
             var settings = new PackagingSettings(config);
+
+            ProcessPackageIncludes(
+                config,
+                settings,
+                location, 
+                projectName, 
+                projectPackageConfig, 
+                encoding);
+            
             var outputLocation = settings.OutputLocation;
             if (outputLocation == null)
             {
@@ -87,7 +93,13 @@ namespace Mason.Packaging
             }
         }
 
-        private static void ProcessPackageIncludes(string location, string projectName, string projectPackageConfig, IBuildConfig config, Encoding encoding)
+        private static void ProcessPackageIncludes(
+            IBuildConfig config,
+            PackagingSettings settings,
+            string location, 
+            string projectName, 
+            string projectPackageConfig, 
+            Encoding encoding)
         {
             PackageContents includes = null;
             if (File.Exists(string.Format("{0}.{1}", projectName, PackageIncludeFile)))
@@ -115,6 +127,10 @@ namespace Mason.Packaging
                 var filesEelement = doc.Root.Element(XName.Get("files"));
                 foreach (var packageInclude in includes)
                 {
+                    if (settings.ExcludeMissingFiles && !File.Exists(Path.Combine(location, packageInclude.Source)))
+                    {
+                        continue;                        
+                    }
                     var includeElement = new XElement(
                         "file",
                         new XAttribute("src", packageInclude.Source),
