@@ -29,7 +29,7 @@ namespace Mason.Config
                 {
                     configs.Add(new BuildConfig(defaultConfig, encoding));
                 }
-                var depthLevelRaw = configs.Select(x => x["mason.configuration.probing-depth-limit"]).FirstOrDefault();
+                var depthLevelRaw = configs.Select(x => x["mason.configuration.probing-depth-limit"]).FirstOrDefault(x => x!= null);
                 var parentDir = location;
                 if (depthLevelRaw != null && int.TryParse(depthLevelRaw, out int depthLevel) && depthLevel > 0)
                 {
