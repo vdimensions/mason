@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 
@@ -12,11 +13,7 @@ namespace Mason.Config
 
         public static IBuildConfig Get(string location, string projectName, Encoding encoding, string buildConfigFileName)
         {
-            var directories = FileSystem.EnumerateDirectories(
-                location,
-                dir => File.Exists(Path.Combine(dir, buildConfigFileName)),
-                dir => Directory.GetFiles(dir, Constants.SolutionFilePattern).Length > 0);
-
+            FileSystem.LocationPredicate endDirFunc = dir => Directory.GetFiles(dir, Constants.SolutionFilePattern).Length > 0;
             var configs = new List<IBuildConfig>( );
             if (!string.IsNullOrEmpty(projectName))
             {   //
@@ -27,10 +24,42 @@ namespace Mason.Config
                 {
                     configs.Add(new BuildConfig(projectConfig, encoding));
                 }
+                var defaultConfig = Path.Combine(location, buildConfigFileName);
+                if (File.Exists(defaultConfig))
+                {
+                    configs.Add(new BuildConfig(defaultConfig, encoding));
+                }
+                var depthLevelRaw = configs.Select(x => x["mason.configuration.probing-depth-limit"]).FirstOrDefault();
+                var parentDir = location;
+                if (depthLevelRaw != null && int.TryParse(depthLevelRaw, out int depthLevel) && depthLevel > 0)
+                {
+                    while (depthLevel > 0)
+                    {
+                        depthLevel--;
+                        var nextParent = new DirectoryInfo(parentDir)?.Parent?.FullName;
+                        if (nextParent == null)
+                        {
+                            break;
+                        }
+                        parentDir = nextParent;
+                    }
+                    endDirFunc = dir => new DirectoryInfo(dir).FullName.Equals(new DirectoryInfo(parentDir).FullName);
+                }
             }
+
+            var directories = FileSystem.EnumerateDirectories(
+                location,
+                dir => File.Exists(Path.Combine(dir, buildConfigFileName)),
+                endDirFunc)
+            .Skip(1);
+
             foreach (var dir in directories)
             {
-                configs.Add(new BuildConfig(Path.Combine(dir, buildConfigFileName), encoding));
+                var path = Path.Combine(dir, buildConfigFileName);
+                if (File.Exists(path))
+                {
+                    configs.Add(new BuildConfig(Path.Combine(dir, buildConfigFileName), encoding));
+                }
             }
             configs.Add(new EnvironmentConfig(EnvironmentVariableTarget.Process));
             configs.Add(new EnvironmentConfig(EnvironmentVariableTarget.User));

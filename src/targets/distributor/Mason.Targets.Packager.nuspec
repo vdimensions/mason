@@ -3,7 +3,7 @@
   <metadata>
     <id>Mason.Targets.Packager</id>
     <title>Mason.Targets.Packager</title>
-    <version>0.1.1.12</version>
+    <version>0.1.1.14</version>
     <description>Mason MSBuild target for creating nuget packages</description>
     <summary>Mason MSBuild target for creating nuget packages</summary>
     <tags>Mason.Targets.Packager</tags>
