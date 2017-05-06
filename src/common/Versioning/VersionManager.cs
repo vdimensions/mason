@@ -15,7 +15,7 @@ namespace Mason.Versioning
             public const string VersionPropertyToUpdate = "mason-verman.version-property-to-update";
         }
 
-        private const string MessageCannotRunFormat = "Cannot run version manager. Property '{0}' is not defined in build.properties";
+        private const string MessageCannotRunFormat = "Cannot run version manager. Property '{0}' is not defined in {1}";
 
         public static void IncreaseVersion(string location, string projectName, Encoding encoding)
         {
@@ -33,7 +33,7 @@ namespace Mason.Versioning
             var versionPropertyToUpdate = config[Properties.VersionPropertyToUpdate];
             if (versionPropertyToUpdate == null)
             {
-                Console.WriteLine(MessageCannotRunFormat, Properties.VersionPropertyToUpdate);
+                Console.WriteLine(MessageCannotRunFormat, Properties.VersionPropertyToUpdate, BuildConfiguration.DefaultBuildConfigFileName);
                 return;
             }
 
@@ -41,7 +41,7 @@ namespace Mason.Versioning
             var version = 0;
             if (!int.TryParse(projectConfig[versionPropertyToUpdate], out version))
             {
-                Console.WriteLine(MessageCannotRunFormat, versionPropertyToUpdate);
+                Console.WriteLine(MessageCannotRunFormat, versionPropertyToUpdate, BuildConfiguration.DefaultBuildConfigFileName);
                 return;
             }
             projectConfig.UpdateValue(versionPropertyToUpdate, (++version).ToString( )).UpdateConfig( );

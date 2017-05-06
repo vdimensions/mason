@@ -106,22 +106,25 @@ namespace Mason.Packaging
                 {
                     return;
                 }
+                XDocument doc;
                 using (var reader = new StreamReader(nupkg, encoding))
                 {
-                    var doc = XDocument.Load(reader);
-                    var filesEelement = doc.Root.Element(XName.Get("files"));
-                    foreach (var packageInclude in includes)
-                    {
-                        var includeElement = new XElement(
-                            "file", 
-                            new XAttribute("src", packageInclude.Source),
-                            new XAttribute("target", packageInclude.Destination));
-                        filesEelement.Add(includeElement);
-                    }
-                    using (var writer = new StreamWriter(nupkg, false, encoding))
-                    {
-                        doc.Save(writer);
-                    }
+                    doc = XDocument.Load(reader);
+                }
+
+                var filesEelement = doc.Root.Element(XName.Get("files"));
+                foreach (var packageInclude in includes)
+                {
+                    var includeElement = new XElement(
+                        "file",
+                        new XAttribute("src", packageInclude.Source),
+                        new XAttribute("target", packageInclude.Destination));
+                    filesEelement.Add(includeElement);
+                }
+
+                using (var writer = new StreamWriter(nupkg, false, encoding))
+                {
+                    doc.Save(writer);
                 }
             }
         }
