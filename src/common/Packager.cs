@@ -1,7 +1,6 @@
 ﻿using System.Text;
 
-using Mason.Config;
-using Mason.Distribution;
+using Mason.Packaging;
 
 
 namespace Mason
@@ -13,9 +12,7 @@ namespace Mason
             var location = args[0];
             var projectName = args.Length > 1 ? args[1] : null;
 
-            var config = BuildConfiguration.Get(location, projectName, Encoding.UTF8);
-
-            PackagingManager.Distribute(config, location);
+            PackagingManager.Distribute(location, projectName, Encoding.UTF8);
         }
     }
 }

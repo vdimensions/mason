@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("Mason.Targets.Packager")]
@@ -16,6 +15,6 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: Guid("e3da7fa8-c9ff-48f6-880c-35d4c70490db")]
 
-[assembly: AssemblyVersion("0.1.1.7")]
-[assembly: AssemblyFileVersion("0.1.1.7")]
-[assembly: AssemblyInformationalVersion("0.1.1.7")]
+[assembly: AssemblyVersion("0.1.1.8")]
+[assembly: AssemblyFileVersion("0.1.1.8")]
+[assembly: AssemblyInformationalVersion("0.1.1.8")]
