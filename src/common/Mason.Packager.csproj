@@ -33,7 +33,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Packaging\PackageContents.cs" />
-    <Compile Include="Packaging\PackageInclude.cs" />
+    <Compile Include="Packaging\PackageFileInclude.cs" />
     <Compile Include="Packaging\PackagingSettings.cs" />
     <Compile Include="FileSystem.cs" />
     <Compile Include="Constants.cs" />

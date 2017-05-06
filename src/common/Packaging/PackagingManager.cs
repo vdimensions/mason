@@ -6,7 +6,7 @@ using System.Text;
 using System.Xml.Linq;
 
 using Mason.Config;
-using Mason.Distribution;
+
 
 namespace Mason.Packaging
 {
@@ -21,7 +21,7 @@ namespace Mason.Packaging
         {
             Directory.SetCurrentDirectory(location);
             var config = BuildConfiguration.Get(location, projectName, encoding);
-            var projectPackageConfig = Path.Combine(location, string.Format("{0}.{1}", projectName, PackageIncludeFile));
+            var projectPackageConfig = Path.Combine(location, $"{projectName}.{PackageIncludeFile}");
             var settings = new PackagingSettings(config);
 
             ProcessPackageIncludes(
@@ -64,7 +64,7 @@ namespace Mason.Packaging
 
                     var process = new Process { StartInfo = startInfo };
                     process.Start();
-                    process.WaitForExit( );
+                    process.WaitForExit();
                 }
             }
 
@@ -102,13 +102,13 @@ namespace Mason.Packaging
             Encoding encoding)
         {
             PackageContents includes = null;
-            if (File.Exists(string.Format("{0}.{1}", projectName, PackageIncludeFile)))
+            if (File.Exists($"{projectName}.{PackageIncludeFile}"))
             {
-                includes = new PackageContents(projectPackageConfig, config);
+                includes = new PackageContents(projectPackageConfig);
             }
             else if (File.Exists(Path.Combine(location, PackageIncludeFile)))
             {
-                includes = new PackageContents(Path.Combine(location, PackageIncludeFile), config);
+                includes = new PackageContents(Path.Combine(location, PackageIncludeFile));
             }
             if (includes != null)
             {
@@ -123,8 +123,16 @@ namespace Mason.Packaging
                 {
                     doc = XDocument.Load(reader);
                 }
-
+                if (doc?.Root == null)
+                {
+                    return;
+                }
                 var filesEelement = doc.Root.Element(XName.Get("files"));
+                if (filesEelement == null)
+                {
+                    doc.Root.Add(new XElement("files"));
+                    filesEelement = doc.Root.Element(XName.Get("files"));
+                }
                 foreach (var packageInclude in includes)
                 {
                     if (settings.ExcludeMissingFiles && !File.Exists(Path.Combine(location, packageInclude.Source)))
@@ -133,8 +141,8 @@ namespace Mason.Packaging
                     }
                     var includeElement = new XElement(
                         "file",
-                        new XAttribute("src", packageInclude.Source),
-                        new XAttribute("target", packageInclude.Destination));
+                        new XAttribute("src", expander.Expand(config, packageInclude.Source)),
+                        new XAttribute("target", expander.Expand(config, packageInclude.Destination)));
                     filesEelement.Add(includeElement);
                 }
 
@@ -147,7 +155,7 @@ namespace Mason.Packaging
 
         private static string GetCommonPackagePart(FileInfo file)
         {
-            var nameWithExtension = file.FullName.Substring(file.DirectoryName.Length);
+            var nameWithExtension = file.FullName.Substring((file.DirectoryName?.Length).GetValueOrDefault(0));
             var parts = nameWithExtension.Split('.');
             return string.Join(".", parts.Reverse().Skip(3).Reverse().ToArray());
         }

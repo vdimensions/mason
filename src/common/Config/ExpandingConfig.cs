@@ -12,11 +12,11 @@
 
         protected override void Read( )
         {
-            Expander expander = new Expander();
+            var expander = new Expander();
             IBuildConfig cfg = new BuildConfigChain(this, rawConfig);
-            foreach (string key in rawConfig.Keys)
+            foreach (var key in rawConfig.Keys)
             {
-                string expandedValue = expander.Expand(cfg, rawConfig[key]);
+                var expandedValue = expander.Expand(cfg, rawConfig[key]);
                 this[key] = expandedValue;
             }
         }

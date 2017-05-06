@@ -10,7 +10,7 @@ namespace Mason.Config
 
         protected abstract void Read();
 
-        public IEnumerable<string> Keys { get { return data.Keys; } }
+        public IEnumerable<string> Keys => data.Keys;
 
         public string this[string key]
         {
@@ -18,10 +18,9 @@ namespace Mason.Config
             { 
                 if (key == null)
                 {
-                    throw new ArgumentNullException("key");
+                    throw new ArgumentNullException(nameof(key));
                 }
-                string result = null;
-                return data.TryGetValue(key, out result) ? result : null;
+                return data.TryGetValue(key, out string result) ? result : null;
             }
             protected set
             {

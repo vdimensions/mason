@@ -51,7 +51,7 @@ namespace Mason.Config
             }
         }
 
-        public bool Exists { get { return file.Exists; } }
+        public bool Exists => file.Exists;
     }
 }
 

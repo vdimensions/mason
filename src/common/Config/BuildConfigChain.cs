@@ -12,8 +12,8 @@ namespace Mason.Config
         public BuildConfigChain(IEnumerable<IBuildConfig> configs) 
         {
             this.configs = configs;
-            foreach (IBuildConfig config in configs)
-            foreach (string key in config.Keys)
+            foreach (var config in configs)
+            foreach (var key in config.Keys)
             {
                 if (keys.Contains(key))
                 {
@@ -24,15 +24,15 @@ namespace Mason.Config
         }
         public BuildConfigChain(params IBuildConfig[] configs) : this(configs as IEnumerable<IBuildConfig>) { }
 
-        public IEnumerable<string> Keys { get { return this.keys; } }
+        public IEnumerable<string> Keys => this.keys;
 
         public string this[string key]
         {
             get
             {
-                foreach (IBuildConfig config in configs)
+                foreach (var config in configs)
                 {
-                    string value = config[key];
+                    var value = config[key];
                     if (value != null)
                     {
                         return value;

@@ -22,7 +22,7 @@ namespace Mason.Config
             {   //
                 // Adding project specific configuration with higher priority if present
                 //
-                var projectConfig = Path.Combine(location, string.Format("{0}.{1}", projectName, buildConfigFileName));
+                var projectConfig = Path.Combine(location, $"{projectName}.{buildConfigFileName}");
                 if (File.Exists(projectConfig))
                 {
                     configs.Add(new BuildConfig(projectConfig, encoding));

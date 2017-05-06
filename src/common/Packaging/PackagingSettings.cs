@@ -1,6 +1,6 @@
 using Mason.Config;
 
-namespace Mason.Distribution
+namespace Mason.Packaging
 {
     public class PackagingSettings
     {
@@ -22,10 +22,10 @@ namespace Mason.Distribution
             ExcludeMissingFiles = bool.TryParse(config[Properties.ExcludeMissingFiles], out bool excludeMissing) && excludeMissing;
         }
 
-        public string OutputLocation { get; private set; }
-        public string OutputFilePatterns { get; private set; }
-        public bool OutputAutoRemove { get; private set; }
-        public string Commands { get; private set; }
-        public bool ExcludeMissingFiles { get; private set; }
+        public string OutputLocation { get; }
+        public string OutputFilePatterns { get; }
+        public bool OutputAutoRemove { get; }
+        public string Commands { get; }
+        public bool ExcludeMissingFiles { get; }
     }
 }

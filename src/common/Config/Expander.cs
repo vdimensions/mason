@@ -9,16 +9,16 @@ namespace Mason.Config
         private const string MatchGroupName = "exp";
         private const string RegExPattern = @"(?<"+MatchGroupName+@">(?:\${)(?:<"+MatchGroupName+@">|(?:[^}])+)+(?:}))";
         private const RegexOptions Options = RegexOptions.Compiled|RegexOptions.CultureInvariant|RegexOptions.IgnoreCase|RegexOptions.Multiline|RegexOptions.ExplicitCapture;
-        private static readonly Regex Expression = new Regex(RegExPattern, Options);
+        private static readonly Regex _expression = new Regex(RegExPattern, Options);
 
         public Expander() { }
 
         private IList<string> GetSubstitutableKeys(string text)
         {
-            MatchCollection matches = Expression.Matches(text);
-            IList<string> result = new List<string>( );
+            var matches = _expression.Matches(text);
+            var result = new List<string>( );
             foreach (Match match in matches)
-            foreach (string groupName in Expression.GetGroupNames())
+            foreach (var groupName in _expression.GetGroupNames())
             {
                 result.Add(match.Groups[groupName].Value);
             }
@@ -27,8 +27,7 @@ namespace Mason.Config
 
         public string Expand(IBuildConfig config, string raw)
         {
-            string expanded;
-            return TryExpand(config, raw, out expanded) ? expanded : raw;
+            return TryExpand(config, raw, out string expanded) ? expanded : raw;
         }
 
         public bool TryExpand(IBuildConfig config, string raw, out string result)
@@ -38,17 +37,17 @@ namespace Mason.Config
         private bool TryExpand(IBuildConfig config, int previousCount, string raw, out string result)
         {
             result = raw;
-            IList<string> keys = GetSubstitutableKeys(raw);
+            var keys = GetSubstitutableKeys(raw);
             if (keys.Count == 0)
             {
                 return true;
             }
             if (keys.Count != previousCount)
             {
-                foreach (string key in keys)
+                foreach (var key in keys)
                 {
-                    string nakedKey = key.Substring(2, key.Length - 3);
-                    string replacement = config[nakedKey];
+                    var nakedKey = key.Substring(2, key.Length - 3);
+                    var replacement = config[nakedKey];
                     if (replacement == null)
                     {
                         return false;
