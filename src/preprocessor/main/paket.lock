@@ -1,0 +1,5 @@
+NUGET
+  remote: ../../../dist
+    Mason.Core (0.1.1.4)
+    Mason.Targets.Preprocessor (0.1.1.12)
+    Mason.Targets.Verman (0.1.1.12)

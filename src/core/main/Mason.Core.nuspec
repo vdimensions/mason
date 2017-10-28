@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package >
+  <metadata>
+    <id>Mason.Core</id>
+    <title>Mason.Core</title>
+    <version>0.1.1.7</version>
+    <description>Mason Core library</description>
+    <summary>Mason Core library</summary>
+    <tags>Mason.Core</tags>
+    <releaseNotes></releaseNotes>
+    <!--
+    <projectUrl>https://nuget.org/packages/Mason.Core</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+     -->
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Ivaylo Slavov</authors>
+    <owners>Ivaylo Slavov</owners>
+    <copyright>Copyright © Ivaylo Slavov 2017</copyright>
+    <dependencies></dependencies>
+    <frameworkAssemblies></frameworkAssemblies>
+    <references></references>
+  </metadata>
+  <files>
+    <file src="bin/*/netstandard1.6/Mason.Core.dll" target="lib/netstandard1.6" />
+    <file src="bin/*/netstandard1.6/Mason.Core.xml" target="lib/netstandard1.6" />
+
+    <file src="bin/*/netstandard1.5/Mason.Core.dll" target="lib/netstandard1.5" />
+    <file src="bin/*/netstandard1.5/Mason.Core.xml" target="lib/netstandard1.5" />
+
+    <file src="bin/*/netstandard1.4/Mason.Core.dll" target="lib/netstandard1.4" />
+    <file src="bin/*/netstandard1.4/Mason.Core.xml" target="lib/netstandard1.4" />
+
+    <file src="bin/*/netstandard1.3/Mason.Core.dll" target="lib/netstandard1.3" />
+    <file src="bin/*/netstandard1.3/Mason.Core.xml" target="lib/netstandard1.3" />
+
+    <file src="bin/*/netstandard1.2/Mason.Core.dll" target="lib/netstandard1.2" />
+    <file src="bin/*/netstandard1.2/Mason.Core.xml" target="lib/netstandard1.2" />
+
+    <file src="bin/*/netstandard1.1/Mason.Core.dll" target="lib/netstandard1.1" />
+    <file src="bin/*/netstandard1.1/Mason.Core.xml" target="lib/netstandard1.1" />
+
+    <file src="bin/*/netstandard1.0/Mason.Core.dll" target="lib/netstandard1.0" />
+    <file src="bin/*/netstandard1.0/Mason.Core.xml" target="lib/netstandard1.0" />
+
+    <file src="bin/*/net45/Mason.Core.dll" target="lib/net45" />
+    <file src="bin/*/net45/Mason.Core.xml" target="lib/net45" />
+
+    <file src="bin/*/net40/Mason.Core.dll" target="lib/net40" />
+    <file src="bin/*/net40/Mason.Core.xml" target="lib/net40" />
+
+    <file src="bin/*/net35/Mason.Core.dll" target="lib/net35" />
+    <file src="bin/*/net35/Mason.Core.xml" target="lib/net35" />
+
+    <file src="bin/*/net20/Mason.Core.dll" target="lib/net20" />
+    <file src="bin/*/net20/Mason.Core.xml" target="lib/net20" />
+  </files>
+</package>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package >
+  <metadata>
+    <id>${id}</id>
+    <title>${title}</title>
+    <version>${version}</version>
+    <description>${description}</description>
+    <summary>${description}</summary>
+    <tags>${id}</tags>
+    <releaseNotes></releaseNotes>
+    <!--
+    <projectUrl>https://nuget.org/packages/${id}</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+     -->
+    <licenseUrl>${license.url}</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>${company}</authors>
+    <owners>${company}</owners>
+    <copyright>${copyright}</copyright>
+    <dependencies></dependencies>
+    <frameworkAssemblies></frameworkAssemblies>
+    <references></references>
+  </metadata>
+  <files>
+    <file src="build\*.targets"      target="build" />
+    <file src="bin\*\Mason.Core.dll" target="tools" />
+    <file src="tools\*.exe"          target="tools" />
+  </files>
+</package>
