@@ -49,13 +49,15 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="mason.properties" />
+    <None Include="AssemblyInfo.fs.template" />
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="IMasonProperties.fs" />
     <Compile Include="EnvironmentProperties.fs" />
     <Compile Include="JavaProperties.fs" />
+    <Compile Include="Expander.fs" />
+    <Compile Include="ExpandableProperties.fs" />
     <None Include="Script.fsx" />
-    <None Include="AssemblyInfo.fs.template" />
-    <None Include="mason.properties" />
     <None Include="paket-update.sh" />
     <None Include="paket.sh" />
     <None Include="paket.references" />
