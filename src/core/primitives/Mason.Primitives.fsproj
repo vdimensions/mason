@@ -41,10 +41,6 @@
       <AssemblyName>FSharp.Core.dll</AssemblyName>
       <HintPath>$(MSBuildProgramFiles32)\Reference Assemblies\Microsoft\FSharp\.NETFramework\v4.0\$(TargetFSharpCoreVersion)\FSharp.Core.dll</HintPath>
     </Reference>
-    <Reference Include="System.ValueTuple">
-      <HintPath>..\packages\System.ValueTuple.4.3.1\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
@@ -54,12 +50,15 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="NullHandling.fs" />
     <Compile Include="IMasonProperties.fs" />
+    <Compile Include="PropertiesChain.fs" />
     <Compile Include="Expander.fsi" />
     <Compile Include="Expander.fs" />
     <Compile Include="EnvironmentProperties.fs" />
     <Compile Include="JavaProperties.fs" />
     <Compile Include="ExpandableProperties.fs" />
+    <Compile Include="FileSystem.fs" />
     <Compile Include="MasonConfiguration.fs" />
+    <Compile Include="Sdk\IMasonModule.fs" />
     <None Include="Script.fsx" />
     <None Include="paket-update.sh" />
     <None Include="paket.sh" />

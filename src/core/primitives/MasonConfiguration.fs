@@ -1,4 +1,4 @@
-﻿namespace Mason.Core
+﻿namespace Mason
 
 
 module MasonConfiguration =

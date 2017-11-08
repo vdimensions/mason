@@ -18,8 +18,8 @@ open System.Runtime.InteropServices
 [<assembly: ComVisible(false)>]
 [<assembly: Guid("AB7F861B-FB05-465F-8502-42A3F0D5AB27")>]
 
-[<assembly: AssemblyVersion("0.2.0.3")>]
-[<assembly: AssemblyFileVersion("0.2.0.3")>]
+[<assembly: AssemblyVersion("0.2.0.5")>]
+[<assembly: AssemblyFileVersion("0.2.0.5")>]
 
 do
     ()

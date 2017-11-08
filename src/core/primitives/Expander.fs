@@ -1,4 +1,4 @@
-﻿namespace Mason.Core
+﻿namespace Mason
 
 open System.Linq
 open System.Text.RegularExpressions
@@ -14,8 +14,8 @@ module Expander =
 
     let _expression = new Regex(RegExPattern, Options);
 
-    let expand(properties:IMasonProperties option, input:string option): string option =
-        let rec recExpand(props:IMasonProperties, input:string):string =
+    let expand(properties: IMasonProperties option, input: string option): string option =
+        let rec recExpand(props : IMasonProperties, input: string): string =
             let mutable result = input
             for token in _expression.Matches(input).Cast<Match>().SelectMany(fun m -> _expression.GetGroupNames().Select(fun g -> m.Groups.[g].Value)).ToList() do
                 let nakedToken = token.[2..token.Length - 3]

@@ -1,4 +1,5 @@
-﻿namespace Mason.Core
+﻿namespace Mason
+
 
 type ExpandableProperties(properties: IMasonProperties) as self =
     member __.Keys with get() = properties.Keys

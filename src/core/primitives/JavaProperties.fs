@@ -1,4 +1,4 @@
-﻿namespace Mason.Core
+﻿namespace Mason
 
 open System.Collections
 open System.IO
