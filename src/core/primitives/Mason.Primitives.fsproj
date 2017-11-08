@@ -59,6 +59,7 @@
     <Compile Include="EnvironmentProperties.fs" />
     <Compile Include="JavaProperties.fs" />
     <Compile Include="ExpandableProperties.fs" />
+    <Compile Include="MasonConfiguration.fs" />
     <None Include="Script.fsx" />
     <None Include="paket-update.sh" />
     <None Include="paket.sh" />
