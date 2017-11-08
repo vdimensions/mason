@@ -52,10 +52,12 @@
     <None Include="mason.properties" />
     <None Include="AssemblyInfo.fs.template" />
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="NullHandling.fs" />
     <Compile Include="IMasonProperties.fs" />
+    <Compile Include="Expander.fsi" />
+    <Compile Include="Expander.fs" />
     <Compile Include="EnvironmentProperties.fs" />
     <Compile Include="JavaProperties.fs" />
-    <Compile Include="Expander.fs" />
     <Compile Include="ExpandableProperties.fs" />
     <None Include="Script.fsx" />
     <None Include="paket-update.sh" />
@@ -87,7 +89,7 @@
   </Target>
   -->
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3' Or $(TargetFrameworkVersion) == 'v4.7')">
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.0.3' Or $(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3' Or $(TargetFrameworkVersion) == 'v4.7' Or $(TargetFrameworkVersion) == 'v4.7.1')">
       <ItemGroup>
         <Reference Include="Kajabity.Tools">
           <HintPath>packages\Kajabity.Tools\lib\net40\Kajabity.Tools.dll</HintPath>
