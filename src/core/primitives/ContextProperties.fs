@@ -1,25 +1,30 @@
 ﻿namespace Mason
 
 open System
-open System.Collections
 open System.Collections.Generic
 
 
-type EnvironmentProperties(target: EnvironmentVariableTarget) as self =
+type ContextProperties(contextName: string) as self =
     let _rawData: Dictionary<string, string> = Dictionary<string, string>(StringComparer.Ordinal)
     do
-        let env = Environment.GetEnvironmentVariables target
-        for key in env.Keys do _rawData.[string key] <- string env.[key]
+        if (obj.ReferenceEquals(null, contextName)) then raise (ArgumentNullException "contextName")
+    new() = ContextProperties("")
     member __.Keys with get() = _rawData.Keys :> seq<string>
     member __.Item with get(key) = 
                         match null2opt key with
                         | Some k ->
-                            match _rawData.TryGetValue k with 
+                            let actualKey = contextName + k;
+                            match _rawData.TryGetValue actualKey with 
                             | (true, value) -> value 
                             | (false, notFound) -> notFound
                         | None -> raise (ArgumentNullException("key"))
-    new() = EnvironmentProperties(EnvironmentVariableTarget.User)
-
+                    and set key value = 
+                        match null2opt key with
+                        | Some k -> 
+                            let actualKey = contextName + k;
+                            _rawData.[actualKey] <- value
+                            ()
+                        | None -> raise (ArgumentNullException "key")
     interface IMasonProperties with
         member __.Keys with get() = self.Keys
         member __.Item with get(key) = self.[key]

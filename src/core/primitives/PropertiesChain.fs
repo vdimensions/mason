@@ -15,14 +15,11 @@ type PropertiesChain([<ParamArray>] props : IMasonProperties array) as self =
                 _keySet.Add k |> ignore
 
     member __.Keys with get() = _keySet :> seq<string>
-    member __.Item 
-        with get(key) = 
-            let mutable result: string option = None
-            for p in props do
-                match p.[key] with
-                | Some v -> result <- Some v
-                | None -> ()
-            result
+    member __.Item with get(key) = 
+                        match null2opt key with
+                        | Some k -> props |> Seq.map (fun p -> null2opt p.[k]) |> Seq.choose id |> Enumerable.FirstOrDefault
+                        | None -> raise (ArgumentNullException("key"))
+            
 
     interface IMasonProperties with
         member __.Keys with get() = self.Keys

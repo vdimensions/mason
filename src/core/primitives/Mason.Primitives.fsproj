@@ -20,19 +20,19 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <Tailcalls>false</Tailcalls>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <OutputPath>bin\Debug\net40</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\net40\Mason.Primitives.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <Tailcalls>true</Tailcalls>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <OutputPath>bin\Release\net40\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\$(Configuration)\$(AssemblyName).XML</DocumentationFile>
+    <DocumentationFile>bin\Release\net40\Mason.Primitives.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
@@ -49,16 +49,22 @@
     <None Include="AssemblyInfo.fs.template" />
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="NullHandling.fs" />
+    <Compile Include="Rop.fs" />
     <Compile Include="IMasonProperties.fs" />
     <Compile Include="PropertiesChain.fs" />
     <Compile Include="Expander.fsi" />
     <Compile Include="Expander.fs" />
     <Compile Include="EnvironmentProperties.fs" />
+    <Compile Include="ContextProperties.fs" />
     <Compile Include="JavaProperties.fs" />
     <Compile Include="ExpandableProperties.fs" />
+    <Compile Include="FileSystem.fsi" />
     <Compile Include="FileSystem.fs" />
     <Compile Include="MasonConfiguration.fs" />
     <Compile Include="Sdk\IMasonModule.fs" />
+    <Compile Include="Sdk\AbstractMasonModule.fs" />
+    <Compile Include="Sdk\ModuleChain.fs" />
+    <Compile Include="Sdk\AbstractSettings.fs" />
     <None Include="Script.fsx" />
     <None Include="paket-update.sh" />
     <None Include="paket.sh" />

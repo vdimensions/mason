@@ -1,3 +1,5 @@
 Mason.Core
-Mason.Targets.Preprocessor
-Mason.Targets.Verman
+
+group Build
+  Mason.Targets.Preprocessor
+  Mason.Targets.Verman

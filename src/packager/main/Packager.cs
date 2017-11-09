@@ -1,19 +1,14 @@
-﻿using System.Text;
-
-using Mason.Packaging;
+﻿using Mason.Sdk;
 
 
 namespace Mason
 {
-    class Packager
+    sealed class Packager : ModuleChain
     {
-        public static void Main(string[] args)
-        {
-            var location = args[0];
-            var projectName = args.Length > 1 ? args[1] : null;
-
-            PackagingManager.Distribute(location, projectName, Encoding.UTF8);
-        }
+        public Packager() : base(
+            "pack", 
+            true, 
+            new NuspecIncludesModule(), new NugetPackageCreateModule(), new NugetPackagePurgerModule()) { }
     }
 }
 

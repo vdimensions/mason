@@ -5,37 +5,34 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-using Mason.Config;
-
 
 namespace Mason.Packaging
 {
     public static class PackagingManager
     {
-        private const string MessageCannotRunFormat = "Cannot run distribution task. Property '{0}' is not defined in build.properties";
+        private const string MessageCannotRunFormat = "Cannot run distribution task. Property '{0}' is not defined in mason.properties";
         private const string PathSeparator = ";";
         private const string CommandSeparator = "|";
         private const string PackageIncludeFile = "mason.nuspec-includes.txt";
 
-        public static void Distribute(string location, string projectName, Encoding encoding)
+        public static void Distribute(string location, string projectName)
         {
             Directory.SetCurrentDirectory(location);
-            var config = BuildConfiguration.Get(location, projectName, encoding);
+            var config = MasonConfiguration.Get(location, projectName);
             var projectPackageConfig = Path.Combine(location, $"{projectName}.{PackageIncludeFile}");
-            var settings = new PackagingSettings(config);
+            var settings = new PackageCreateSettings(config);
 
             ProcessPackageIncludes(
                 config,
                 settings,
                 location, 
                 projectName, 
-                projectPackageConfig, 
-                encoding);
+                projectPackageConfig);
             
             var outputLocation = settings.OutputLocation;
             if (outputLocation == null)
             {
-                Console.WriteLine(MessageCannotRunFormat, PackagingSettings.Properties.OutputLocation);
+                Console.WriteLine(MessageCannotRunFormat, PackageCreateSettings.Properties.OutputLocation);
                 return;
             }
             if (!Directory.Exists(outputLocation))
@@ -94,12 +91,11 @@ namespace Mason.Packaging
         }
 
         private static void ProcessPackageIncludes(
-            IBuildConfig config,
-            PackagingSettings settings,
+            IMasonProperties config,
+            PackageCreateSettings settings,
             string location, 
             string projectName, 
-            string projectPackageConfig, 
-            Encoding encoding)
+            string projectPackageConfig)
         {
             PackageContents includes = null;
             if (File.Exists($"{projectName}.{PackageIncludeFile}"))
@@ -112,14 +108,13 @@ namespace Mason.Packaging
             }
             if (includes != null)
             {
-                var expander = new Expander();
-                var nupkg = Path.Combine(location, expander.Expand(config, "${id}.nuspec"));
+                var nupkg = Path.Combine(location, Expander.Expand(config, "${id}.nuspec"));
                 if (!File.Exists(nupkg))
                 {
                     return;
                 }
                 XDocument doc;
-                using (var reader = new StreamReader(nupkg, encoding))
+                using (var reader = new StreamReader(nupkg, Encoding.UTF8))
                 {
                     doc = XDocument.Load(reader);
                 }
@@ -141,12 +136,12 @@ namespace Mason.Packaging
                     }
                     var includeElement = new XElement(
                         "file",
-                        new XAttribute("src", expander.Expand(config, packageInclude.Source)),
-                        new XAttribute("target", expander.Expand(config, packageInclude.Destination)));
+                        new XAttribute("src", Expander.Expand(config, packageInclude.Source)),
+                        new XAttribute("target", Expander.Expand(config, packageInclude.Destination)));
                     filesEelement.Add(includeElement);
                 }
 
-                using (var writer = new StreamWriter(nupkg, false, encoding))
+                using (var writer = new StreamWriter(nupkg, false, Encoding.UTF8))
                 {
                     doc.Save(writer);
                 }
