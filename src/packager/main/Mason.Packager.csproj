@@ -40,7 +40,7 @@
     <Compile Include="NugetPackageCreateModule.cs" />
     <Compile Include="NugetPackagePurgerModule.cs" />
     <Compile Include="NuspecIncludesModule.cs" />
-    <Compile Include="Packaging\AbstractPackagingSettings.cs" />
+    <Compile Include="Packaging\PackagingSettings.cs" />
     <Compile Include="Packaging\NuspecIncludesSettings.cs" />
     <Compile Include="Packaging\PackageContents.cs" />
     <Compile Include="Packaging\PackageFileInclude.cs" />

@@ -1,10 +1,12 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 
 
 namespace Mason.Processing
 {
     public class FileReplacementPair
     {
+        [Obsolete]
         public FileReplacementPair(string rawFile, string targetFile) : this(new FileInfo(rawFile), new FileInfo(targetFile)) { }
         public FileReplacementPair(FileInfo rawFile, FileInfo targetFile)
         {
