@@ -58,8 +58,6 @@
     <Compile Include="ContextProperties.fs" />
     <Compile Include="JavaProperties.fs" />
     <Compile Include="ExpandableProperties.fs" />
-    <Compile Include="FileSystem.fsi" />
-    <Compile Include="FileSystem.fs" />
     <Compile Include="MasonConfiguration.fs" />
     <Compile Include="Sdk\IMasonModule.fs" />
     <Compile Include="Sdk\AbstractMasonModule.fs" />

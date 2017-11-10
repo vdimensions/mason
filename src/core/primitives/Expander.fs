@@ -21,7 +21,7 @@ module Expander =
             result <- match null2opt props.[nakedToken] with | Some value -> recExpand(props, result.Replace(token, value)) | None -> result
         result
 
-    let Expand(properties: IMasonProperties, text: string): string = 
+    let Expand (properties, text) = 
         match null2opt properties with
         | Some props ->
             match null2opt text with
