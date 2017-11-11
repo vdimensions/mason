@@ -6,16 +6,18 @@ open System.IO
 module MasonConfiguration =
 
     [<Literal>]
-    let DefaultConfigFileName: string = "mason.properties";
+    let DefaultConfigFileName: string = "mason.properties"
     [<Literal>]
-    let SolutionFilePattern: string = "*.sln";
+    let SolutionFilePattern: string = "*.sln"
 
     [<Literal>]
-    let ContextPropertyProjectFileName = "mason.context.project-file";
+    let ContextPropertyProjectFileName = "mason.context.project-file"
     [<Literal>]
-    let ContextPropertySolutionDirName = "mason.context.solution-dir";
+    let ContextPropertySolutionDirName = "mason.context.solution-dir"
     [<Literal>]
-    let ContextPropertyLocationName = "mason.context.location";
+    let ContextPropertyLocationName = "mason.context.location"
+    [<Literal>]
+    let ContextPropertyFileName = "mason.context.config"
 
     let strNonEmpty(str: string) =
         match null2opt str with
@@ -35,13 +37,20 @@ module MasonConfiguration =
             contextConfig.[ContextPropertyLocationName] <- loc
 
             let mutable locationDir = DirectoryInfo(loc)
-            let projectSpecificConfigs = locationDir.GetFiles(String.Format("{0}.{1}", projectName, buildConfigFileName), SearchOption.TopDirectoryOnly)
-            if (projectSpecificConfigs.Length = 1) then configs <- Array.append configs [|JavaProperties(projectSpecificConfigs.[0])|]
+            let projectConfigFileName = String.Format("{0}.{1}", projectName, buildConfigFileName);
+            let projectSpecificConfigs = locationDir.GetFiles(projectConfigFileName, SearchOption.TopDirectoryOnly)
+            if (projectSpecificConfigs.Length = 1) then 
+                configs <- Array.append configs [|JavaProperties(projectSpecificConfigs.[0])|]
+                contextConfig.[ContextPropertyFileName] <- projectConfigFileName              
 
             let mutable shouldTraverse: bool = true
             while (shouldTraverse) do
                 let defaultConfigs = locationDir.GetFiles(buildConfigFileName, SearchOption.TopDirectoryOnly)
-                if (defaultConfigs.Length = 1) then configs <- Array.append configs [|JavaProperties(defaultConfigs.[0])|]
+                if (defaultConfigs.Length = 1) then 
+                    configs <- Array.append configs [|JavaProperties(defaultConfigs.[0])|]
+                    match null2opt contextConfig.[ContextPropertyFileName] with
+                    | Some _ -> ()
+                    | _ -> contextConfig.[ContextPropertyFileName] <- buildConfigFileName
 
                 let solutionFiles = locationDir.GetFiles(SolutionFilePattern, SearchOption.TopDirectoryOnly)
                 if (solutionFiles.Length > 0) then 

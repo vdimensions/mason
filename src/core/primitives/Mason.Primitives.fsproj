@@ -62,7 +62,7 @@
     <Compile Include="Sdk\IMasonModule.fs" />
     <Compile Include="Sdk\AbstractMasonModule.fs" />
     <Compile Include="Sdk\ModuleChain.fs" />
-    <Compile Include="Sdk\AbstractSettings.fs" />
+    <Compile Include="Sdk\AbstractMasonSettings.fs" />
     <None Include="Script.fsx" />
     <None Include="paket-update.sh" />
     <None Include="paket.sh" />

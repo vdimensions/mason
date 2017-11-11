@@ -14,8 +14,12 @@ type JavaProperties(file: FileInfo, encoding: Encoding) as self =
     do
         match null2opt file with
         | Some f ->
-            use stream = f.OpenRead()
-            _props.Load(stream, match null2opt encoding with Some e -> e | None -> Encoding.UTF8)
+            let e = match null2opt encoding with Some e -> e | None -> Encoding.UTF8
+            // detect and remove any UTF8 BOM mark before parsing the properties to prevent a corrupted read
+            let mutable fc = File.ReadAllText(f.FullName, e)
+            if (fc.StartsWith("\uFEFF", StringComparison.Ordinal)) then fc <- fc.Substring(1)
+            use stream = new MemoryStream(e.GetBytes(fc.ToCharArray()))
+            _props.Load(stream, e)
         | None -> nullArg "file"
     member __.Keys with get() = _props.Keys.Cast<string>()
     member __.Item with get(key) = 
