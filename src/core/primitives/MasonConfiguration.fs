@@ -65,7 +65,6 @@ module MasonConfiguration =
                 contextConfig;
                 EnvironmentProperties(EnvironmentVariableTarget.Process); 
                 EnvironmentProperties(EnvironmentVariableTarget.User); 
-                EnvironmentProperties(EnvironmentVariableTarget.Machine)
             |]
         ExpandableProperties(PropertiesChain(configs))
 
