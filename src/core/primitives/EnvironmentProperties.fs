@@ -17,7 +17,7 @@ type EnvironmentProperties(target: EnvironmentVariableTarget) as self =
                             match _rawData.TryGetValue k with 
                             | (true, value) -> value 
                             | (false, notFound) -> notFound
-                        | None -> raise (ArgumentNullException("key"))
+                        | None -> nullArg "key"
     new() = EnvironmentProperties(EnvironmentVariableTarget.User)
 
     interface IMasonProperties with

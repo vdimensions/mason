@@ -22,6 +22,7 @@ type ModuleChain(name: string, selectiveExecution: bool, submodules: seq<IMasonM
                     for m in submodules do
                         if (StringComparer.OrdinalIgnoreCase.Equals(m.Name, trimmed)) then
                             m.Run(properties, r)
+            | [] -> ()
         | false ->
             for m in submodules do
                 m.Run(properties, args)

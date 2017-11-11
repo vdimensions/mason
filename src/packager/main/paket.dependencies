@@ -1,7 +1,7 @@
 source ../../../dist
   nuget Mason.Core
 
-  group Build
-    source ../../../dist
-      nuget Mason.Targets.Preprocessor
-      nuget Mason.Targets.Verman
+group build
+  source ../../../dist
+    nuget Mason.Targets.Preprocessor
+    nuget Mason.Targets.Verman

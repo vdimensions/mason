@@ -26,7 +26,7 @@ module Expander =
         | Some props ->
             match null2opt text with
             | Some txt -> recExpand(props, txt)
-            | None -> raise (ArgumentNullException("text"))
-        | None -> raise (ArgumentNullException("properties"))
+            | None -> nullArg "text" 
+        | None -> nullArg "properties"
         
 

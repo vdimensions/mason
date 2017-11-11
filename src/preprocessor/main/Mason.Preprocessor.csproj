@@ -37,6 +37,7 @@
     <Compile Include="Processing\FileReplacementPair.cs" />
     <Compile Include="PreprocessorModule.cs" />
     <Compile Include="Processing\PreprocessorSettings.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -49,9 +50,6 @@
     <None Include="paket.references" />
     <None Include="paket.sh" />
     <None Include="Properties\AssemblyInfo.cs.template" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Properties\.gitignore" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\core\primitives\Mason.Primitives.fsproj">

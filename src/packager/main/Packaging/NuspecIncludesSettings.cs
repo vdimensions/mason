@@ -18,7 +18,7 @@ namespace Mason.Packaging
         {
             _properties = properties;
             ExcludeMissingFiles = bool.TryParse(properties[Properties.ExcludeMissingFiles], out bool excludeMissing) && excludeMissing;
-            NuspecFile = properties[Properties.NuspecFile];
+            NuspecFile = GetRequiredProperty(Properties.NuspecFile);
         }
 
         public bool ExcludeMissingFiles { get; }

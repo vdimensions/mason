@@ -3,15 +3,15 @@ using Mason.Sdk;
 
 namespace Mason.Packaging
 {
-    public class PackagingSettings : AbstractSettings
+    public class PackagingSettings : AbstractMasonSettings
     {
         public static class Properties
         {
-            public const string OutputLocation       = "mason-packager.output.location";
+            public const string OutputLocation = "mason-packager.output.location";
         }
         public PackagingSettings(IMasonProperties properties) : base(properties)
         {
-            OutputLocation = properties[Properties.OutputLocation];
+            OutputLocation = GetRequiredProperty(Properties.OutputLocation);
         }
         public string OutputLocation { get; }
     }

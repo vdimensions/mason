@@ -16,7 +16,7 @@ type JavaProperties(file: FileInfo, encoding: Encoding) as self =
         | Some f ->
             use stream = f.OpenRead()
             _props.Load(stream, match null2opt encoding with Some e -> e | None -> Encoding.UTF8)
-        | None -> raise (ArgumentNullException "file")
+        | None -> nullArg "file"
     member __.Keys with get() = _props.Keys.Cast<string>()
     member __.Item with get(key) = 
                         match null2opt key with
@@ -26,7 +26,8 @@ type JavaProperties(file: FileInfo, encoding: Encoding) as self =
                                 if ((s.[0] = '"') && (s.[s.Length - 1] = '"')) then s.[1..s.Length - 2]
                                 else s
                             | None -> null
-                        | None -> raise (ArgumentNullException("key"))
+                        | None -> nullArg "key"
+    member __.Location with get() = file.FullName
                         
     new (file: FileInfo) = JavaProperties(file, Encoding.UTF8)
     new (path: string, encoding: Encoding) = JavaProperties(new FileInfo(path), encoding)

@@ -6,12 +6,12 @@ using Mason.Sdk;
 
 namespace Mason.Processing
 {
-    public class PreprocessorSettings : AbstractSettings, IMasonProperties
+    public class PreprocessorSettings : AbstractMasonSettings, IMasonProperties
     {
         public static class Properties
         {
             public const string TemplateFileMatchPattern = "mason.preprocessor.template-file-pattern";
-            public const string TemplateFileEncoding = "mason.preprocessor.template-file-encoding";
+            public const string TemplateFileEncoding     = "mason.preprocessor.template-file-encoding";
         }
 
         private readonly IMasonProperties _properties;

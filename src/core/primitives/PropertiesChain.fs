@@ -18,7 +18,7 @@ type PropertiesChain([<ParamArray>] props : IMasonProperties array) as self =
     member __.Item with get(key) = 
                         match null2opt key with
                         | Some k -> props |> Seq.map (fun p -> null2opt p.[k]) |> Seq.choose id |> Enumerable.FirstOrDefault
-                        | None -> raise (ArgumentNullException("key"))
+                        | None -> nullArg "key"
             
 
     interface IMasonProperties with
