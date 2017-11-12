@@ -2,6 +2,7 @@
 using System.IO;
 using System.Text;
 
+using Mason;
 using Mason.Config;
 
 
@@ -12,19 +13,17 @@ namespace Mason.Versioning
     {
         public static class Properties
         {
-            public const string VersionPropertyToUpdate = "mason-verman.version-property-to-update";
+            public const string VersionPropertyToUpdate = "mason.verman.version-property-to-update";
         }
-
-        private const string MessageCannotRunFormat = "Cannot run version manager. Property '{0}' is not defined in {1}";
 
         public static void IncreaseVersion(string location, string projectName, Encoding encoding)
         {
-            var config = BuildConfiguration.Get(location, projectName, encoding);
-            var projectConfigFile = new FileInfo(Path.Combine(location, projectName + "." + BuildConfiguration.DefaultBuildConfigFileName));
-            var defaultConfigfile = new FileInfo(Path.Combine(location, BuildConfiguration.DefaultBuildConfigFileName));
+            var config = MasonConfiguration.Get(location, projectName, encoding);
+            var projectConfigFile = new FileInfo(Path.Combine(location, projectName + "." + MasonConfiguration.DefaultBuildConfigFileName));
+            var defaultConfigfile = new FileInfo(Path.Combine(location, MasonConfiguration.DefaultBuildConfigFileName));
             if (!projectConfigFile.Exists && !defaultConfigfile.Exists)
             {
-                Console.WriteLine("File does not exist: {0}", Path.Combine(location, BuildConfiguration.DefaultBuildConfigFileName));
+                Console.WriteLine("File does not exist: {0}", Path.Combine(location, MasonConfiguration.DefaultBuildConfigFileName));
                 return;
             }
 
@@ -33,7 +32,7 @@ namespace Mason.Versioning
             var versionPropertyToUpdate = config[Properties.VersionPropertyToUpdate];
             if (versionPropertyToUpdate == null)
             {
-                Console.WriteLine(MessageCannotRunFormat, Properties.VersionPropertyToUpdate, BuildConfiguration.DefaultBuildConfigFileName);
+                Console.WriteLine(MessageCannotRunFormat, Properties.VersionPropertyToUpdate, MasonConfiguration.DefaultBuildConfigFileName);
                 return;
             }
 
@@ -41,7 +40,7 @@ namespace Mason.Versioning
             var version = 0;
             if (!int.TryParse(projectConfig[versionPropertyToUpdate], out version))
             {
-                Console.WriteLine(MessageCannotRunFormat, versionPropertyToUpdate, BuildConfiguration.DefaultBuildConfigFileName);
+                Console.WriteLine(MessageCannotRunFormat, versionPropertyToUpdate, MasonConfiguration.DefaultBuildConfigFileName);
                 return;
             }
             projectConfig.UpdateValue(versionPropertyToUpdate, (++version).ToString( )).UpdateConfig( );
