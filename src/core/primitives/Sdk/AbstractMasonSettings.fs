@@ -1,6 +1,7 @@
 ﻿namespace Mason.Sdk
 
 open System
+open System.IO
 
 open Mason
 
@@ -8,10 +9,16 @@ open Mason
 type AbstractMasonSettings(properties: IMasonProperties) =
     [<Literal>]
     let RequiredPropertyMissingMessageFormat: string = "Required property '{0}' is not defined.";
+    /// Gets a value representing the filesystem location of the current mason.properties config file.
     member __.Location with get() = __.GetRequiredProperty(MasonConfiguration.ContextPropertyLocationName)
+    /// Gets a value representing the filesystem location of the current project file.
     member __.ProjectFile with get() = properties.[MasonConfiguration.ContextPropertyProjectFileName]
+    /// Gets a value representing the filesystem location of the current projects' solution.
+    /// <remarks>Can be <c>null</c>.</remarks>
     member __.SolutionDir with get() = properties.[MasonConfiguration.ContextPropertySolutionDirName]
-    member __.ConfigFile with get() = properties.[MasonConfiguration.ContextPropertyFileName]
+    /// Gets a value representing the name of the current mason config file.
+    member __.ConfigFileName with get() = properties.[MasonConfiguration.ContextPropertyFileName]
+    member __.ConfigFile with get() = new FileInfo(Path.Combine(__.Location, __.ConfigFileName))
     member __.GetRequiredProperty key:string =
         match null2opt key with
         | Some k ->

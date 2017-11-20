@@ -29,6 +29,15 @@ type JavaProperties(file: FileInfo, encoding: Encoding) as self =
                     _props.[k] <- props.GetProperty(k)
 
         | None -> nullArg "file"
+    member __.Update() = 
+        let props = Kajabity.Tools.Java.JavaProperties()
+        let e = match null2opt encoding with Some e -> e | None -> Encoding.UTF8
+        use stream = file.OpenRead()
+        props.Load(stream, e)
+        for k in _props.Keys do props.[k] <- _props.[k]
+        let writer = JavaPropertyWriter(props)
+        use ws = file.OpenWrite()
+        writer.Write(ws, null)
     member __.Keys with get() = _props.Keys.Cast<string>()
     member __.Item with get(key) = 
                         match null2opt key with
@@ -38,6 +47,13 @@ type JavaProperties(file: FileInfo, encoding: Encoding) as self =
                                 if ((s.[0] = '"') && (s.[s.Length - 1] = '"')) then s.[1..s.Length - 2]
                                 else s
                             | (false, _) -> null
+                        | None -> nullArg "key"
+                    and set key value =
+                        match null2opt key with
+                        | Some k -> 
+                            match null2opt value with
+                            | Some v -> _props.[k] <- v
+                            | None -> nullArg "value"
                         | None -> nullArg "key"
     member __.Location with get() = file.FullName
                         

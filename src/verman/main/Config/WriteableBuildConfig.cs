@@ -6,13 +6,12 @@ using System.Text;
 
 namespace Mason.Config
 {
-    internal class WriteableBuildConfig : BuildConfig
+    internal class WriteableBuildConfig : JavaProperties
     {
         private readonly FileInfo file;
         private readonly Encoding encoding;
         private readonly HashSet<string> updatedKeys = new HashSet<string>(StringComparer.Ordinal);
 
-        public WriteableBuildConfig(Uri location, Encoding encoding) : this(location.ToString(), encoding) { }
         public WriteableBuildConfig(string location, Encoding encoding) : base(location, encoding) 
         { 
             this.file = new FileInfo(location);

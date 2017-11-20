@@ -1,62 +1,52 @@
 ﻿using System;
-using System.IO;
 using System.Text;
 
-using Mason.Config;
 using Mason.Sdk;
 using Mason.Versioning;
 
 
 namespace Mason
 {
-    internal class Verman : AbstractMasonModule<VersioningSettings>
+    internal class VermanModule : AbstractMasonModule<VersioningSettings>
     {
-        private const string MessageCannotRunFormat = "Cannot run version manager. Property '{0}' is not defined in {1}";
-
-        public static void Main(string[] args)
-        {
-            var location = args[0];
-            var projectName = args.Length > 1 ? args[1] : null;
-
-            VersionManager.IncreaseVersion(location, projectName, Encoding.UTF8);
-        }
+        private JavaProperties _writableProps;
 
         public override VersioningSettings CreateConfiguration(IMasonProperties properties)
-        {
+        {           
             var defaults = new ContextProperties
             {
-                [VersioningSettings.Properties.VersionPropertyToUpdateKey] = "version.revision"
+                [VersioningSettings.Properties.VersionPropertyToUpdateKey] = "version.revision",
+                [VersioningSettings.Properties.ConfigFileEncodingKey] = "UTF-8"
             };
-            return new VersioningSettings(new PropertiesChain(properties, defaults));
+            var result = new VersioningSettings(new PropertiesChain(properties, defaults));
+
+            var chain = properties as PropertiesChain;
+            foreach (var inner in chain)
+            {
+                _writableProps = inner as JavaProperties;
+                if (_writableProps != null)
+                {
+                    break;
+                }
+            }
+            if (_writableProps == null)
+            {
+                _writableProps = new JavaProperties(result.ConfigFile, Encoding.GetEncoding(result.ConfigFileEncoding));
+            }
+            return result;
         }
 
         public override void Run(VersioningSettings settings, params string[] args)
         {
-            var projectConfigFile = new FileInfo(Path.Combine(location, projectName + "." + MasonConfiguration.DefaultBuildConfigFileName));
-            var defaultConfigfile = new FileInfo(Path.Combine(location, MasonConfiguration.DefaultBuildConfigFileName));
-            if (!projectConfigFile.Exists && !defaultConfigfile.Exists)
+            var versionPropertyToUpdate = settings.VersionPropertyToUpdate;
+            var versionproPropertyValue = settings.GetRequiredProperty(versionPropertyToUpdate);
+            if (!int.TryParse(versionproPropertyValue, out var version))
             {
-                Console.WriteLine("File does not exist: {0}", Path.Combine(location, MasonConfiguration.DefaultBuildConfigFileName));
+                Console.WriteLine($"Invalid version number: {versionproPropertyValue}");
                 return;
             }
-
-            var versionHolderFile = projectConfigFile.Exists ? projectConfigFile : defaultConfigfile;
-
-            var versionPropertyToUpdate = config[Properties.VersionPropertyToUpdate];
-            if (versionPropertyToUpdate == null)
-            {
-                Console.WriteLine(MessageCannotRunFormat, Properties.VersionPropertyToUpdate, MasonConfiguration.DefaultBuildConfigFileName);
-                return;
-            }
-
-            var projectConfig = new WriteableBuildConfig(versionHolderFile.FullName, encoding);
-            var version = 0;
-            if (!int.TryParse(projectConfig[versionPropertyToUpdate], out version))
-            {
-                Console.WriteLine(MessageCannotRunFormat, versionPropertyToUpdate, MasonConfiguration.DefaultBuildConfigFileName);
-                return;
-            }
-            projectConfig.UpdateValue(versionPropertyToUpdate, (++version).ToString()).UpdateConfig();
+            _writableProps[versionPropertyToUpdate] = (++version).ToString();
+            _writableProps.Update();
         }
 
         public override string Name => "verman";
