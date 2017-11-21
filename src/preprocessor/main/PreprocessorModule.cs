@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 using Mason.Processing;
 using Mason.Sdk;
@@ -15,12 +16,12 @@ namespace Mason
             var augmentedProperties = new ContextProperties
             {
                 [PreprocessorSettings.Properties.TemplateFileMatchPattern] = "*.template",
-                [PreprocessorSettings.Properties.TemplateFileEncoding] = "UTF8"
+                [PreprocessorSettings.Properties.TemplateFileEncoding] = "UTF-8"
             };
             return new PreprocessorSettings(new PropertiesChain(properties, augmentedProperties));
         }
 
-        public override void Run(PreprocessorSettings settings, params string[] args)
+        public override void Run(PreprocessorSettings settings, Options.IOptionMap options)
         {
             // TODO: check if different location is passed as an argument
 
@@ -31,10 +32,10 @@ namespace Mason
             var templateExtension = settings.TemplateFilePattern.Substring(settings.TemplateFilePattern.LastIndexOf('.'));
 
             IList<FileReplacementPair> result = new List<FileReplacementPair>( );
-            foreach (var rawFile in files)
+            foreach (var rawFile in files.Where(f => f.FullName.EndsWith(templateExtension, StringComparison.Ordinal)))
             {
-                var extIndex = rawFile.Extension.LastIndexOf(templateExtension, StringComparison.Ordinal);
-                var targetFile = new FileInfo(rawFile.Name.Substring(0, extIndex));
+                //var extIndex = rawFile.FullName.LastIndexOf(templateExtension, StringComparison.Ordinal);
+                var targetFile = new FileInfo(rawFile.FullName.Substring(0, rawFile.FullName.Length - (templateExtension.Length + 1)));
                 result.Add(new FileReplacementPair(rawFile, targetFile));
             }
 

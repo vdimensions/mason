@@ -12,9 +12,11 @@ namespace Mason
     {
         private const string MessageCannotRunFormat = "Cannot run distribution task. Property '{0}' is not defined in mason.properties";
 
+        internal const string ModuleName = "purge";
+
         public override PackagingSettings CreateConfiguration(IMasonProperties properties) { return new PackagingSettings(properties); }
 
-        public override void Run(PackagingSettings config, params string[] args)
+        public override void Run(PackagingSettings config, Options.IOptionMap options)
         {
             var outputLocation = config.OutputLocation;
             if (outputLocation == null)
@@ -44,6 +46,6 @@ namespace Mason
             return string.Join(".", parts.Reverse().Skip(3).Reverse().ToArray());
         }
 
-        public override string Name => "purge";
+        public override string Name => ModuleName;
     }
 }

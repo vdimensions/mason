@@ -1,34 +1,28 @@
 ﻿namespace Mason.Sdk
 
 open System
-
 open Mason
+open Mason.Sdk.Options
 
-type ModuleChain(name: string, selectiveExecution: bool, submodules: seq<IMasonModule>) as self =
+type ModuleChain(optionParser: IOptionParser, modules: seq<IMasonModule>) =
     do
-        if (obj.ReferenceEquals(name, null)) then raise (ArgumentNullException "name")
-        if (obj.ReferenceEquals(submodules, null)) then raise (ArgumentNullException "submodules")
-    new (name: string, selectiveExecution: bool, [<ParamArray>] modules: IMasonModule array) = ModuleChain(name, selectiveExecution, modules :> seq<IMasonModule>)
-
-    member __.Run(properties: IMasonProperties, [<ParamArray>] args: string array) =
-        match selectiveExecution with
-        | true ->
-            match List.ofSeq args with
-            | start::remainder ->
-                let r = Array.ofList remainder
-                let candidateMultipleSubmodules = start.Split([|'&'|], StringSplitOptions.RemoveEmptyEntries)
-                for candidateModule in candidateMultipleSubmodules do
-                    let trimmed = candidateModule.Trim()
-                    for m in submodules do
-                        if (StringComparer.OrdinalIgnoreCase.Equals(m.Name, trimmed)) then
-                            m.Run(properties, r)
-            | [] -> ()
-        | false ->
-            for m in submodules do
-                m.Run(properties, args)
-
-    member __.Name with get() = name
-
-    interface IMasonModule with
-        member __.Run(properties, args) = self.Run(properties, args)
-        member __.Name with get() = name
+        if (obj.ReferenceEquals(modules, null)) then raise (ArgumentNullException "submodules")
+    member __.Run(args: string array) =
+        match List.ofSeq args with
+        | [] | [_] -> 
+            System.Console.WriteLine("No args")
+            ()
+        | start::remainder ->
+            let cmp = StringComparer.OrdinalIgnoreCase;
+            //if (cmp.Equals(start, 
+            let r = Array.ofList remainder.Tail
+            let options = optionParser.Parse(r)
+            let projectName = remainder.Head
+            let properties = MasonConfiguration.Get(Environment.CurrentDirectory, projectName)
+            //let candidateMultipleSubmodules = remainder.Tail.Head.Split([|'&'|], StringSplitOptions.RemoveEmptyEntries)
+            //for candidateModule in candidateMultipleSubmodules |> Seq.map (fun x -> x.Trim()) do
+            let candidateModule = start
+            for m in modules do
+                if (cmp.Equals(m.Name, candidateModule)) then
+                    System.Console.WriteLine("Executing module {0}", m.Name)
+                    m.Run(properties, options)

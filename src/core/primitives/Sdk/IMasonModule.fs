@@ -1,10 +1,9 @@
 ﻿namespace Mason.Sdk
 
-open System
-
 open Mason
+open Mason.Sdk.Options
 
 [<Interface>]
 type IMasonModule =
-    abstract member Run: config: IMasonProperties*[<ParamArray>] args: string array -> unit
+    abstract member Run: config: IMasonProperties * options: IOptionMap -> unit
     abstract member Name: string with get

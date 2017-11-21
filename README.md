@@ -1,7 +1,7 @@
-# Welcome to the **mason** project
+# Welcome to the **mason** project #
 
 
-## What is mason?  
+## What is mason? ##
 
 This project was born out of my day-to-day struggle in managing the versioning and packaging process for my own projects. It answered the need for a consistent and easy-to-manage way to increase versions, create nuget packages and keep project metadata (like assembly title, project id, copyright, license and etc.) aligned between the package description and the project build artefact (AssemblyInfo). 
 
@@ -17,7 +17,7 @@ There is no dependency among the tools themselves, you are free to use only one 
 
 Before dealing with details about the separate tools, there is one more important concept for mason's workings -- the `mason.properties` file.
 
-### Mason properties
+### Mason properties ###
 
 The `mason.properties` file is a standard text file, containing key-value pairs. Java developers should be familiar with this format. It roughly has the following structure:
 
@@ -36,7 +36,7 @@ The purpose of mason properties is to contain your project settings. For example
     copyright = "Copyright (c) ${author} YEAR"
 
 
-## Mason Preprocessor
+## Mason Preprocessor ##
 
 The mason preprocessor tool allows you to reuse project specific settings on more that one place in the project where the same setting is needed. Good candidates for such properties are the ones in the above example -- for instance, one may need to use the project's version during the build as well as during the packaging process.
 
@@ -44,7 +44,7 @@ You may have noticed some *expressions* between `${` and `}` sumbols in the abov
 
 In order to benefit from the different values we specify in the `mason.properties`, we need to understand mason templates.
 
-### Mason templates
+### Mason templates ###
 
 Mason templates are regular text files which can contain whaterver you want. 
 What matters here, is that in the template files one may include expressions -- text defined betweeen `${` and `}`. This is the same expression syntax as in the mason property files.
@@ -94,7 +94,7 @@ Because the substitution occurs before the actual build process takes place, the
 > Beware! Instead of editing the expanded file, update its corresponding template file. Otherwise the changes will be overwritten when the file is expaned again. A good approach is to include a short notice in the beginning of the template file saying the file is automatically regenerated and user changes could be lost.
 
 
-## Mason Version Manager
+## Mason Version Manager ##
 
 The version manager tool is triggered during the `AfterBuild` phase. Its purpose is to increase the project's version by updating the relevant `mason.properties` file. 
 
@@ -109,6 +109,6 @@ At the current state, mason supports only incremental version updaes. In order t
    Now, mason will look for the `version.build` property and will increase its value after a successful build.
 
 
-## Mason Packager
+## Mason Packager ##
 
 TODO

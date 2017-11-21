@@ -58,10 +58,16 @@
     <Compile Include="ContextProperties.fs" />
     <Compile Include="JavaProperties.fs" />
     <Compile Include="ExpandableProperties.fs" />
+    <Compile Include="MasonContext.fs" />
+    <Compile Include="MasonConfiguration.fsi" />
     <Compile Include="MasonConfiguration.fs" />
+    <Compile Include="Sdk\Options.fs" />
     <Compile Include="Sdk\IMasonModule.fs" />
-    <Compile Include="Sdk\AbstractMasonModule.fs" />
+    <Compile Include="Sdk\CompositeModule.fs" />
     <Compile Include="Sdk\ModuleChain.fs" />
+    <Compile Include="Sdk\MasonRunner.fsi" />
+    <Compile Include="Sdk\MasonRunner.fs" />
+    <Compile Include="Sdk\AbstractMasonModule.fs" />
     <Compile Include="Sdk\AbstractMasonSettings.fs" />
     <None Include="Script.fsx" />
     <None Include="paket-update.sh" />

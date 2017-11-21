@@ -12,6 +12,8 @@ namespace Mason
     {
         private const string PackageIncludeFile = "mason.nuspec-includes.txt";
 
+        internal const string ModuleName = "incl";
+
         public override NuspecIncludesSettings CreateConfiguration(IMasonProperties properties)
         {
             var augmentedProperties = new ContextProperties
@@ -21,7 +23,7 @@ namespace Mason
             return new NuspecIncludesSettings(new PropertiesChain(augmentedProperties, properties));
         }
 
-        public override void Run(NuspecIncludesSettings settings, params string[] args)
+        public override void Run(NuspecIncludesSettings settings, Options.IOptionMap options)
         {
             PackageContents includes = null;
             var projectPackageIncludes = Path.Combine(settings.Location, $"{settings.ProjectFile}.{PackageIncludeFile}");
@@ -76,6 +78,6 @@ namespace Mason
             }
         }
 
-        public override string Name => "incl";
+        public override string Name => ModuleName;
     }
 }

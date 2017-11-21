@@ -4,20 +4,11 @@ open System
 open System.IO
 
 module MasonConfiguration =
-
     [<Literal>]
     let DefaultConfigFileName: string = "mason.properties"
     [<Literal>]
     let SolutionFilePattern: string = "*.sln"
 
-    [<Literal>]
-    let ContextPropertyProjectFileName = "mason.context.project-file"
-    [<Literal>]
-    let ContextPropertySolutionDirName = "mason.context.solution-dir"
-    [<Literal>]
-    let ContextPropertyLocationName = "mason.context.location"
-    [<Literal>]
-    let ContextPropertyFileName = "mason.context.config"
 
     let strNonEmpty(str: string) =
         match null2opt str with
@@ -29,32 +20,32 @@ module MasonConfiguration =
         let buildConfigFileName = DefaultConfigFileName
         
         let contextConfig = ContextProperties()
-        contextConfig.[ContextPropertyProjectFileName] <- projectName
+        contextConfig.[MasonContext.Properties.ProjectFileKey] <- projectName
 
         match strNonEmpty location with
         | Some loc ->
 
-            contextConfig.[ContextPropertyLocationName] <- loc
+            contextConfig.[MasonContext.Properties.LocationKey] <- loc
 
             let mutable locationDir = DirectoryInfo(loc)
             let projectConfigFileName = String.Format("{0}.{1}", projectName, buildConfigFileName);
             let projectSpecificConfigs = locationDir.GetFiles(projectConfigFileName, SearchOption.TopDirectoryOnly)
             if (projectSpecificConfigs.Length = 1) then 
                 configs <- Array.append configs [|JavaProperties(projectSpecificConfigs.[0])|]
-                contextConfig.[ContextPropertyFileName] <- projectConfigFileName              
+                contextConfig.[MasonContext.Properties.FileNameKey] <- projectConfigFileName              
 
             let mutable shouldTraverse: bool = true
             while (shouldTraverse) do
                 let defaultConfigs = locationDir.GetFiles(buildConfigFileName, SearchOption.TopDirectoryOnly)
                 if (defaultConfigs.Length = 1) then 
                     configs <- Array.append configs [|JavaProperties(defaultConfigs.[0])|]
-                    match null2opt contextConfig.[ContextPropertyFileName] with
+                    match null2opt contextConfig.[MasonContext.Properties.FileNameKey] with
                     | Some _ -> ()
-                    | _ -> contextConfig.[ContextPropertyFileName] <- buildConfigFileName
+                    | _ -> contextConfig.[MasonContext.Properties.FileNameKey] <- buildConfigFileName
 
                 let solutionFiles = locationDir.GetFiles(SolutionFilePattern, SearchOption.TopDirectoryOnly)
                 if (solutionFiles.Length > 0) then 
-                    contextConfig.[ContextPropertySolutionDirName] <- locationDir.FullName
+                    contextConfig.[MasonContext.Properties.SolutionDirKey] <- locationDir.FullName
                     shouldTraverse <- false
                 else
                     locationDir <- locationDir.Parent

@@ -14,9 +14,11 @@ namespace Mason
         private const string PathSeparator = ";";
         private const string CommandSeparator = "|";
 
+        internal const string ModuleName = "create";
+
         public override PackageCreateSettings CreateConfiguration(IMasonProperties properties) { return new PackageCreateSettings(properties); }
 
-        public override void Run(PackageCreateSettings config, params string[] args)
+        public override void Run(PackageCreateSettings config, Options.IOptionMap options)
         {
             var outputLocation = config.OutputLocation;
             if (outputLocation == null)
@@ -66,6 +68,6 @@ namespace Mason
             }
         }
 
-        public override string Name => "create";
+        public override string Name => ModuleName;
     }
 }

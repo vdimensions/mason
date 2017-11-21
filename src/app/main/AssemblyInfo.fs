@@ -1,12 +1,12 @@
-﻿namespace Mason.Primitives.AssemblyInfo
+﻿namespace mason.AssemblyInfo
 
 open System.Reflection
 open System.Runtime.CompilerServices
 open System.Runtime.InteropServices
 
-[<assembly: AssemblyTitle("Mason.Primitives")>]
-[<assembly: AssemblyProduct("Mason.Primitives")>]
-[<assembly: AssemblyDescription("Mason Primitives library")>]
+[<assembly: AssemblyTitle("mason")>]
+[<assembly: AssemblyProduct("mason")>]
+[<assembly: AssemblyDescription("Mason executable")>]
 
 [<assembly: AssemblyCompany("Ivaylo Slavov")>]
 [<assembly: AssemblyCopyright("Copyright © Ivaylo Slavov 2017")>]
@@ -16,10 +16,10 @@ open System.Runtime.InteropServices
 [<assembly: AssemblyCulture("")>]
 
 [<assembly: ComVisible(false)>]
-[<assembly: Guid("f46be8de-7918-48af-b19f-4d33a4fd6d79")>]
+[<assembly: Guid("7a94252c-7fc4-465d-92fa-1282bf322e15")>]
 
-[<assembly: AssemblyVersion("0.2.0.119")>]
-[<assembly: AssemblyFileVersion("0.2.0.119")>]
+[<assembly: AssemblyVersion("0.2.0.38")>]
+[<assembly: AssemblyFileVersion("0.2.0.38")>]
 
 do
     ()

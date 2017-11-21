@@ -36,16 +36,16 @@ namespace Mason
             return result;
         }
 
-        public override void Run(VersioningSettings settings, params string[] args)
+        public override void Run(VersioningSettings settings, Options.IOptionMap options)
         {
-            var versionPropertyToUpdate = settings.VersionPropertyToUpdate;
-            var versionproPropertyValue = settings.GetRequiredProperty(versionPropertyToUpdate);
-            if (!int.TryParse(versionproPropertyValue, out var version))
+            var versionPropertyName = settings.VersionPropertyToUpdate;
+            var versionPropertyValue = settings.GetRequiredProperty(versionPropertyName);
+            if (!int.TryParse(versionPropertyValue, out var version))
             {
-                Console.WriteLine($"Invalid version number: {versionproPropertyValue}");
+                Console.WriteLine($"Invalid version number: {versionPropertyValue}");
                 return;
             }
-            _writableProps[versionPropertyToUpdate] = (++version).ToString();
+            _writableProps[versionPropertyName] = (++version).ToString();
             _writableProps.Update();
         }
 
