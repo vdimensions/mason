@@ -4,6 +4,8 @@ open System
 open System.IO
 open System.Reflection
 open System.Text.RegularExpressions
+open Mason
+open Mason.Sdk.Options
 
 module MasonRunner =
     [<Literal>]
@@ -40,5 +42,21 @@ module MasonRunner =
         |> Seq.collect getPluginTypes 
         |> Seq.map instantiateType
 
-    let Run(optionParser, args) = ModuleChain(optionParser, getModules()).Run(args)
+    let Run(optionParser: IOptionParser, args) = 
+        let modules = getModules();
+        match List.ofArray args with
+        | [] | [_] -> 
+            System.Console.WriteLine("Insufficient arguments")
+            ()
+        | candidateModule::remainder ->
+            let cmp = StringComparer.OrdinalIgnoreCase;
+            match modules |> Seq.tryFind (fun m -> cmp.Equals(m.Name, candidateModule)) with 
+            | Some m -> 
+                System.Console.WriteLine("Executing module {0}", m.Name)
+                // TODO: let the module itself determine if a project name was specified
+                let projectName = remainder.Head
+                let options = optionParser.Parse(Array.ofList remainder.Tail)
+                let properties = MasonConfiguration.Get(Environment.CurrentDirectory, projectName)
+                m.Run(properties, options)
+            | None -> ()
 

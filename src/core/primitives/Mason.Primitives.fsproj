@@ -55,7 +55,7 @@
     <Compile Include="Expander.fsi" />
     <Compile Include="Expander.fs" />
     <Compile Include="EnvironmentProperties.fs" />
-    <Compile Include="ContextProperties.fs" />
+    <Compile Include="DefaultProperties.fs" />
     <Compile Include="JavaProperties.fs" />
     <Compile Include="ExpandableProperties.fs" />
     <Compile Include="MasonContext.fs" />
@@ -64,7 +64,6 @@
     <Compile Include="Sdk\Options.fs" />
     <Compile Include="Sdk\IMasonModule.fs" />
     <Compile Include="Sdk\CompositeModule.fs" />
-    <Compile Include="Sdk\ModuleChain.fs" />
     <Compile Include="Sdk\MasonRunner.fsi" />
     <Compile Include="Sdk\MasonRunner.fs" />
     <Compile Include="Sdk\AbstractMasonModule.fs" />

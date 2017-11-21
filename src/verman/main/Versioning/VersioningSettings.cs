@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Text;
 
 using Mason.Sdk;
 
@@ -19,11 +20,11 @@ namespace Mason.Versioning
         {
             _properties = properties;
             VersionPropertyToUpdate = GetRequiredProperty(Properties.VersionPropertyToUpdateKey);
-            ConfigFileEncoding = GetRequiredProperty(Properties.ConfigFileEncodingKey);
+            ConfigFileEncoding = Encoding.GetEncoding(GetRequiredProperty(Properties.ConfigFileEncodingKey));
         }
 
         public string VersionPropertyToUpdate { get; }
-        public string ConfigFileEncoding { get; }
+        public Encoding ConfigFileEncoding { get; }
 
         public string this[string property] => _properties[property];
         IEnumerable<string> IMasonProperties.Keys => _properties.Keys;

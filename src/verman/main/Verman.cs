@@ -1,5 +1,6 @@
 ﻿using System;
-using System.Text;
+using System.Collections.Generic;
+using System.IO;
 
 using Mason.Sdk;
 using Mason.Versioning;
@@ -9,31 +10,37 @@ namespace Mason
 {
     internal class VermanModule : AbstractMasonModule<VersioningSettings>
     {
-        private JavaProperties _writableProps;
-
         public override VersioningSettings CreateConfiguration(IMasonProperties properties)
         {           
-            var defaults = new ContextProperties
+            var defaults = new DefaultProperties
             {
                 [VersioningSettings.Properties.VersionPropertyToUpdateKey] = "version.revision",
                 [VersioningSettings.Properties.ConfigFileEncodingKey] = "UTF-8"
             };
-            var result = new VersioningSettings(new PropertiesChain(properties, defaults));
+            return new VersioningSettings(new PropertiesChain(properties, defaults));
+        }
 
-            var chain = properties as PropertiesChain;
-            foreach (var inner in chain)
+        public void UpdateConfig(VersioningSettings settings, IDictionary<string, object> newData)
+        {
+            var lines = File.ReadAllLines(settings.ConfigFile.FullName, settings.ConfigFileEncoding);
+            var updates = 0;
+            for (var i = 0; i < lines.Length; i++)
             {
-                _writableProps = inner as JavaProperties;
-                if (_writableProps != null)
+                var line = lines[i];
+
+                foreach (var updatedKey in newData.Keys)
                 {
-                    break;
+                    if (line.TrimStart().StartsWith(updatedKey))
+                    {
+                        lines[i] = $"{updatedKey} = {newData[updatedKey]}";
+                        updates++;
+                    }
                 }
             }
-            if (_writableProps == null)
+            if (updates > 0)
             {
-                _writableProps = new JavaProperties(result.ConfigFile, Encoding.GetEncoding(result.ConfigFileEncoding));
+                File.WriteAllLines(settings.ConfigFile.FullName, lines, settings.ConfigFileEncoding);
             }
-            return result;
         }
 
         public override void Run(VersioningSettings settings, Options.IOptionMap options)
@@ -45,8 +52,7 @@ namespace Mason
                 Console.WriteLine($"Invalid version number: {versionPropertyValue}");
                 return;
             }
-            _writableProps[versionPropertyName] = (++version).ToString();
-            _writableProps.Update();
+            UpdateConfig(settings, new Dictionary<string, object>{{versionPropertyName, ++version}});
         }
 
         public override string Name => "verman";

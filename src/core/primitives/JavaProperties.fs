@@ -27,17 +27,13 @@ type JavaProperties(file: FileInfo, encoding: Encoding) as self =
                     if (properKey.Length > 0) then _props.[properKey] <- props.GetProperty(k)
                 else 
                     _props.[k] <- props.GetProperty(k)
-
         | None -> nullArg "file"
     member __.Update() = 
         let props = Kajabity.Tools.Java.JavaProperties()
-        let e = match null2opt encoding with Some e -> e | None -> Encoding.UTF8
-        use stream = file.OpenRead()
-        props.Load(stream, e)
         for k in _props.Keys do props.[k] <- _props.[k]
         let writer = JavaPropertyWriter(props)
-        use ws = file.OpenWrite()
-        writer.Write(ws, null)
+        use ws = new FileStream(file.FullName, FileMode.Truncate, FileAccess.Write)
+        writer.Write(ws, "")
     member __.Keys with get() = _props.Keys.Cast<string>()
     member __.Item with get(key) = 
                         match null2opt key with

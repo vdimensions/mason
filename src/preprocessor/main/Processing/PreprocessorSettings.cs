@@ -10,7 +10,7 @@ namespace Mason.Processing
     {
         public static class Properties
         {
-            public const string TemplateFileMatchPattern = "mason.preprocessor.template-file-pattern";
+            public const string TemplateFileExtension = "mason.preprocessor.template-file-extension";
             public const string TemplateFileEncoding     = "mason.preprocessor.template-file-encoding";
         }
 
@@ -19,13 +19,15 @@ namespace Mason.Processing
         public PreprocessorSettings(IMasonProperties properties) : base(properties)
         {
             _properties = properties;
-            TemplateFilePattern = properties[Properties.TemplateFileMatchPattern];
+            TemplateFileExtension = string.Format($".{properties[Properties.TemplateFileExtension].TrimStart('.')}");
+            TemplateFilePattern = string.Format($"*{TemplateFileExtension}");
             var enc = properties[Properties.TemplateFileEncoding];
             if (!string.IsNullOrEmpty(enc))
             {
                 TemplateFileEncoding = Encoding.GetEncoding(enc);
             }
         }
+        public string TemplateFileExtension { get; }
         public string TemplateFilePattern { get; }
         public Encoding TemplateFileEncoding { get; }
 

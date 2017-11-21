@@ -19,7 +19,7 @@ module MasonConfiguration =
         let mutable configs: IMasonProperties array = [||]
         let buildConfigFileName = DefaultConfigFileName
         
-        let contextConfig = ContextProperties()
+        let contextConfig = DefaultProperties()
         contextConfig.[MasonContext.Properties.ProjectFileKey] <- projectName
 
         match strNonEmpty location with

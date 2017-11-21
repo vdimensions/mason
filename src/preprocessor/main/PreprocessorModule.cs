@@ -13,9 +13,9 @@ namespace Mason
     {
         public override PreprocessorSettings CreateConfiguration(IMasonProperties properties)
         {
-            var augmentedProperties = new ContextProperties
+            var augmentedProperties = new DefaultProperties
             {
-                [PreprocessorSettings.Properties.TemplateFileMatchPattern] = "*.template",
+                [PreprocessorSettings.Properties.TemplateFileExtension] = ".template",
                 [PreprocessorSettings.Properties.TemplateFileEncoding] = "UTF-8"
             };
             return new PreprocessorSettings(new PropertiesChain(properties, augmentedProperties));
@@ -29,18 +29,19 @@ namespace Mason
                 settings.TemplateFilePattern,
                 SearchOption.AllDirectories);
 
-            var templateExtension = settings.TemplateFilePattern.Substring(settings.TemplateFilePattern.LastIndexOf('.'));
+            var templateExtension = settings.TemplateFileExtension;
 
             IList<FileReplacementPair> result = new List<FileReplacementPair>( );
-            foreach (var rawFile in files.Where(f => f.FullName.EndsWith(templateExtension, StringComparison.Ordinal)))
+            foreach (var rawFile in files.Where(f => f.FullName.EndsWith(templateExtension, StringComparison.OrdinalIgnoreCase)))
             {
                 //var extIndex = rawFile.FullName.LastIndexOf(templateExtension, StringComparison.Ordinal);
-                var targetFile = new FileInfo(rawFile.FullName.Substring(0, rawFile.FullName.Length - (templateExtension.Length + 1)));
+                var targetFile = new FileInfo(rawFile.FullName.Substring(0, rawFile.FullName.Length - templateExtension.Length));
                 result.Add(new FileReplacementPair(rawFile, targetFile));
             }
 
             foreach (var pair in result)
             {
+                Console.WriteLine($"Preprocessing file {pair.TargetFile.FullName} using template {pair.RawFile.FullName}");
                 var replacedContents = Expander.Expand(settings, File.ReadAllText(pair.RawFile.FullName, settings.TemplateFileEncoding));
                 using (var fileStream = new FileStream(pair.TargetFile.FullName, FileMode.Create, FileAccess.Write))
                 using (var writer = new StreamWriter(fileStream, settings.TemplateFileEncoding))
@@ -52,6 +53,6 @@ namespace Mason
             }
         }
 
-        public override string Name => "preprocess";
+        public override string Name => "prep";
     }
 }

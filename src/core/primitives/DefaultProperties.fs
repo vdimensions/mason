@@ -4,7 +4,7 @@ open System
 open System.Collections.Generic
 
 
-type ContextProperties() as self =
+type DefaultProperties() as self =
     let _rawData: Dictionary<string, string> = Dictionary<string, string>(StringComparer.Ordinal)
     member __.Keys with get() = _rawData.Keys :> seq<string>
     member __.Item with get(key) = 

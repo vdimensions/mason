@@ -33,7 +33,7 @@ namespace Mason
                 .Where(x => x.Extension.EndsWith("nupkg", StringComparison.OrdinalIgnoreCase))
                 .GroupBy(GetCommonPackagePart, StringComparer.OrdinalIgnoreCase);
             foreach (var gr in groups)
-            foreach (var fi in gr.OrderByDescending(y => y.CreationTime).Skip(1))
+            foreach (var fi in gr.OrderByDescending(y => y.Name).Skip(1))
             {
                 fi.Delete();
             }

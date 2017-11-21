@@ -16,11 +16,11 @@ namespace Mason
 
         public override NuspecIncludesSettings CreateConfiguration(IMasonProperties properties)
         {
-            var augmentedProperties = new ContextProperties
+            var augmentedProperties = new DefaultProperties
             {
                 [NuspecIncludesSettings.Properties.NuspecFile] = "${id}.nuspec"
             };
-            return new NuspecIncludesSettings(new PropertiesChain(augmentedProperties, properties));
+            return new NuspecIncludesSettings(new PropertiesChain(properties, augmentedProperties));
         }
 
         public override void Run(NuspecIncludesSettings settings, Options.IOptionMap options)
@@ -41,6 +41,7 @@ namespace Mason
                 var nuspec = Path.Combine(settings.Location, settings.NuspecFile);
                 if (!File.Exists(nuspec))
                 {
+                    // TODO: info
                     return;
                 }
                 XDocument doc;
@@ -49,7 +50,7 @@ namespace Mason
                     doc = XDocument.Load(reader);
                 }
                 if (doc?.Root == null)
-                {
+                {// TODO: info
                     return;
                 }
                 var filesElement = doc.Root.Element(XName.Get("files"));

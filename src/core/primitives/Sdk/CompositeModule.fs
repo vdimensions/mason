@@ -11,6 +11,9 @@ type CompositeModule(name: string, submodules: seq<IMasonModule>) as self =
         match null2opt submodules with | None -> nullArg "submodules" | Some _ -> ()
     new(name: string, [<ParamArray>] submodules: IMasonModule array) = CompositeModule(name, submodules :> seq<IMasonModule>)
     abstract member ResolveModules: options: IOptionMap * submodules: seq<IMasonModule> -> seq<IMasonModule>
+    default __.ResolveModules(options: IOptionMap, submodules: seq<IMasonModule>) =
+        submodules |> Seq.map(fun x -> if options.ResolveFlag(x.Name) then Some x else None) |> Seq.choose id
+
 
     member __.Run(properties: IMasonProperties, options: IOptionMap) =
         for sm in __.ResolveModules(options, submodules) do sm.Run(properties, options)
