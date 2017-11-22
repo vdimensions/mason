@@ -1,9 +1,10 @@
 NUGET
-  remote: ../../../dist
-    Mason.Core (0.1.1.7)
+  remote: https://www.nuget.org/api/v2
+    Kajabity.Tools (0.4.6248.39967)
 
 GROUP build
 NUGET
   remote: ../../../dist
-    Mason.Targets.Preprocessor (0.1.1.13)
-    Mason.Targets.Verman (0.1.1.13)
+    Mason.Targets.Packager (0.1.1.26)
+    Mason.Targets.Preprocessor (0.2.0.14)
+    Mason.Targets.Verman (0.2.0.23)

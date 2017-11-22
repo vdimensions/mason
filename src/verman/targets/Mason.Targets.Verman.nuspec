@@ -3,7 +3,7 @@
   <metadata>
     <id>Mason.Targets.Verman</id>
     <title>Mason.Targets.Verman</title>
-    <version>0.2.0.20</version>
+    <version>0.2.0.38</version>
     <description>Mason MSBuild target for version management</description>
     <summary>Mason MSBuild target for version management</summary>
     <tags>Mason.Targets.Verman</tags>
@@ -17,11 +17,13 @@
     <authors>Ivaylo Slavov</authors>
     <owners>Ivaylo Slavov</owners>
     <copyright>Copyright © Ivaylo Slavov 2017</copyright>
-    <dependencies></dependencies>
+    <dependencies>
+    </dependencies>
     <frameworkAssemblies></frameworkAssemblies>
     <references></references>
   </metadata>
   <files>
+    <!--<file src="build\*.props"                   target="build" />-->
     <file src="build\*.targets"                 target="build" />
     <file src="tools\Mason.Foundation.dll"      target="tools" />
     <file src="tools\Mason.VersionManager.dll"  target="tools" />

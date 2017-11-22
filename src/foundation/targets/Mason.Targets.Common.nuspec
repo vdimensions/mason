@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<package >
+  <metadata>
+    <id>Mason.Targets.Common</id>
+    <title>Mason.Targets.Common</title>
+    <version>0.2.0.3</version>
+    <description>Mason MSBuild target for Mason.Targets.Common</description>
+    <summary>Mason MSBuild target for Mason.Targets.Common</summary>
+    <tags>Mason.Targets.Common</tags>
+    <releaseNotes></releaseNotes>
+    <!--
+    <projectUrl>https://nuget.org/packages/Mason.Targets.Common</projectUrl>
+    <iconUrl>https://nuget.org/Content/Images/packageDefaultIcon-50x50.png</iconUrl>
+     -->
+    <licenseUrl>http://opensource.org/licenses/Apache-2.0</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <authors>Ivaylo Slavov</authors>
+    <owners>Ivaylo Slavov</owners>
+    <copyright>Copyright © Ivaylo Slavov 2017</copyright>
+    <dependencies></dependencies>
+    <frameworkAssemblies></frameworkAssemblies>
+    <references></references>
+  </metadata>
+  <files>
+    <file src="build\*.props" target="build" />
+  </files>
+</package>

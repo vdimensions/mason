@@ -1,6 +1,3 @@
-source https://www.nuget.org/api/v2/
-  nuget Kajabity.Tools
-
 group build
   source ../../../dist
     nuget Mason.Targets.Packager

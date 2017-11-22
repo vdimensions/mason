@@ -1,6 +1,15 @@
 NUGET
+  remote: https://www.nuget.org/api/v2
+    Kajabity.Tools (0.4.6248.39967)
+    Mono.Options (5.3.0.1)
+
+GROUP build
+NUGET
+  remote: https://www.nuget.org/api/v2
+    ILRepack (2.0.14)
   remote: ../../../dist
-    Mason.Core (0.1.1.4)
+    Mason.Targets.Common (0.2.0.3)
     Mason.Targets.Packager (0.1.1.26)
-    Mason.Targets.Preprocessor (0.1.1.12)
-    Mason.Targets.Verman (0.1.1.12)
+    Mason.Targets.Preprocessor (0.1.1.13)
+    Mason.Targets.Verman (0.2.0.37)
+      Mason.Targets.Common (>= 0.2)

@@ -6,11 +6,11 @@
     <CommandPrefix Condition=" '$(OS)' == 'Windows_NT'"></CommandPrefix>
     <CommandPrefix Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319</CommandPrefix>
 
-    <PathPrefix>$(MSBuildThisFileDirectory)..\tools</PathPrefix>
+    <Mason>$(CommandPrefix) &quot;$(MSBuildThisFileDirectory)..\tools\mason.exe&quot;</Mason>
+    
+    <ProjectFile>$(ProjectName)$(ProjectExt)</ProjectFile>
   </PropertyGroup>
-
   <Target Name="UpdateVersions" AfterTargets="AfterBuild">
-    <Exec Command="cd &quot;$(ProjectDir)&quot;" />
-    <Exec Command="$(CommandPrefix) &quot;$(PathPrefix)\mason.exe&quot; verman $(ProjectName)$(ProjectExt)" />
+    <Exec Command="$(Mason) verman $(ProjectFile)" WorkingDirectory="$(ProjectDir)" />
   </Target>
 </Project>

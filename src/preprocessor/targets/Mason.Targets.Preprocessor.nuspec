@@ -3,7 +3,7 @@
   <metadata>
     <id>Mason.Targets.Preprocessor</id>
     <title>Mason.Targets.Preprocessor</title>
-    <version>0.1.1.13</version>
+    <version>0.2.0.14</version>
     <description>Mason MSBuild target for template preprocessing</description>
     <summary>Mason MSBuild target for template preprocessing</summary>
     <tags>Mason.Targets.Preprocessor</tags>
@@ -17,13 +17,16 @@
     <authors>Ivaylo Slavov</authors>
     <owners>Ivaylo Slavov</owners>
     <copyright>Copyright © Ivaylo Slavov 2017</copyright>
-    <dependencies></dependencies>
+    <dependencies>
+      <dependency id="Mason.Targets.Common" version="0.2.0" />
+    </dependencies>
     <frameworkAssemblies></frameworkAssemblies>
     <references></references>
   </metadata>
   <files>
-    <file src="build\*.targets"      target="build" />
-    <file src="bin\*\Mason.Core.dll" target="tools" />
-    <file src="tools\*.exe"          target="tools" />
+    <file src="build\*.targets"                 target="build" />
+    <file src="tools\Mason.Foundation.dll"      target="tools" />
+    <file src="tools\Mason.Preprocessor.dll"    target="tools" />
+    <file src="tools\mason.exe"                 target="tools" />
   </files>
 </package>

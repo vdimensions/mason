@@ -17,16 +17,11 @@
     <authors>${company}</authors>
     <owners>${company}</owners>
     <copyright>${copyright}</copyright>
-    <dependencies>
-      <dependency id="Mason.Targets.Common" version="${mason.version}" />
-    </dependencies>
+    <dependencies></dependencies>
     <frameworkAssemblies></frameworkAssemblies>
     <references></references>
   </metadata>
   <files>
-    <file src="build\*.targets"                 target="build" />
-    <file src="tools\Mason.Foundation.dll"      target="tools" />
-    <file src="tools\Mason.Preprocessor.dll"    target="tools" />
-    <file src="tools\mason.exe"                 target="tools" />
+    <file src="build\*.props" target="build" />
   </files>
 </package>

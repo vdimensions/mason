@@ -3,28 +3,31 @@
     <MonoPath Condition="'$(MonoPath)' == '' And Exists('/Library/Frameworks/Mono.framework/Commands/mono')">/Library/Frameworks/Mono.framework/Commands/mono</MonoPath>
     <MonoPath Condition="'$(MonoPath)' == ''">mono</MonoPath>
 
-    <CommandPrefix Condition=" '$(OS)' == 'Windows_NT'"></CommandPrefix>
-    <CommandPrefix Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319</CommandPrefix>
+    <ToolsDir>$(ProjectDir)tools\</ToolsDir>
 
-    <ILRepack>$(CommandPrefix) $(ProjectDir)packages\build\ILRepack\tools\ILRepack.exe</ILRepack>
+    <ILRepack Condition=" '$(OS)' == 'Windows_NT'">$(ProjectDir)packages\build\ILRepack\tools\ILRepack.exe</ILRepack>
+    <ILRepack Condition=" '$(OS)' != 'Windows_NT'">$(MonoPath) --runtime=v4.0.30319 $(ProjectDir)packages/build/ILRepack/tools/ILRepack.exe</ILRepack>
   </PropertyGroup>
 
-  <Target Name="CopyTools" AfterTargets="BeforeBuild">
+  <Target Name="CopyDlls" AfterTargets="Build">
     <ItemGroup>
       <ToolFiles Include="$(OutputPath)*.dll" />
     </ItemGroup>
-    <Copy SourceFiles="@(ToolFiles)" DestinationFolder="$(ProjectDir)\tools" />
+    <Copy SourceFiles="@(ToolFiles)" DestinationFolder="$(ToolsDir)" />
+    <Message Text="Calling CopyDlls from Mason.Targets.ConsolidateDependencies.targets" Importance="high" />
   </Target>
 
-  <Target Name="CopyExe" AfterTargets="CopyTools">
+  <Target Name="CopyExe" AfterTargets="CopyDlls">
     <ItemGroup>
       <ToolFiles Include="$(OutputPath)*.exe" />
     </ItemGroup>
-    <Copy SourceFiles="@(ToolFiles)" DestinationFolder="$(ProjectDir)\tools" />
+    <Copy SourceFiles="@(ToolFiles)" DestinationFolder="$(ToolsDir)" />
+    <Message Text="Calling CopyExe from Mason.Targets.ConsolidateDependencies.targets" Importance="high" />
   </Target>
 
-  <Target Name="ConsolidateDependencies" AfterTargets="CopyExe">
-    <Exec Command="$(ILRepack) /out:Mason.Foundation.dll Mason.Foundation.dll Kajabity.Tools.dll FSharp.Core.dll" WorkingDirectory="$(ProjectDir)tools" />
-    <Exec Command="$(ILRepack) /out:mason.exe mason.exe Mono.Options.dll" WorkingDirectory="$(ProjectDir)tools" />
+  <Target Name="ConsolidateDependencies" AfterTargets="CopyExe" Condition="Exists('$(ToolsDir)Mason.Foundation.dll')">
+    <Exec Command="$(ILRepack) /out:Mason.Foundation.dll Mason.Foundation.dll Kajabity.Tools.dll FSharp.Core.dll" WorkingDirectory="$(ToolsDir)" />
+    <Exec Command="$(ILRepack) /out:mason.exe mason.exe Mono.Options.dll" WorkingDirectory="$(ToolsDir)" />
+    <Message Text="Calling ConsolidateDependencies from Mason.Targets.ConsolidateDependencies.targets" Importance="high" />
   </Target>
 </Project>

@@ -44,6 +44,16 @@
     <None Include="tools\mason-packager.exe" />
     <None Include="build\Mason.Targets.Packager.targets" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\app\main\mason.fsproj">
+      <Project>{7a94252c-7fc4-465d-92fa-1282bf322e15}</Project>
+      <Name>mason</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\foundation\main\Mason.Foundation.fsproj">
+      <Project>{f46be8de-7918-48af-b19f-4d33a4fd6d79}</Project>
+      <Name>Mason.Foundation</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Target Name="CopyTools" AfterTargets="BeforeBuild">
     <ItemGroup>
       <ToolFiles Include="$(ProjectDir)..\main\bin\$(Configuration)\mason-packager.exe" />
@@ -51,15 +61,7 @@
     <Copy SourceFiles="@(ToolFiles)" DestinationFolder="$(ProjectDir)\tools\" />
   </Target>
   <Choose>
-    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v3.5' Or $(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.0.3' Or $(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3' Or $(TargetFrameworkVersion) == 'v4.7' Or $(TargetFrameworkVersion) == 'v4.7.1')">
-      <ItemGroup>
-        <Reference Include="Mason.Core">
-          <HintPath>packages\Mason.Core\lib\net35\Mason.Core.dll</HintPath>
-          <Private>True</Private>
-          <Paket>True</Paket>
-        </Reference>
-      </ItemGroup>
-    </When>
+    <When Condition="$(TargetFrameworkIdentifier) == '.NETFramework' And ($(TargetFrameworkVersion) == 'v3.5' Or $(TargetFrameworkVersion) == 'v4.0' Or $(TargetFrameworkVersion) == 'v4.0.3' Or $(TargetFrameworkVersion) == 'v4.5' Or $(TargetFrameworkVersion) == 'v4.5.1' Or $(TargetFrameworkVersion) == 'v4.5.2' Or $(TargetFrameworkVersion) == 'v4.5.3' Or $(TargetFrameworkVersion) == 'v4.6' Or $(TargetFrameworkVersion) == 'v4.6.1' Or $(TargetFrameworkVersion) == 'v4.6.2' Or $(TargetFrameworkVersion) == 'v4.6.3' Or $(TargetFrameworkVersion) == 'v4.7' Or $(TargetFrameworkVersion) == 'v4.7.1')" />
   </Choose>
   <Import Project="packages\Mason.Targets.Packager\build\Mason.Targets.Packager.targets" Condition="Exists('packages\Mason.Targets.Packager\build\Mason.Targets.Packager.targets')" Label="Paket" />
   <Import Project="packages\Mason.Targets.Preprocessor\build\Mason.Targets.Preprocessor.targets" Condition="Exists('packages\Mason.Targets.Preprocessor\build\Mason.Targets.Preprocessor.targets')" Label="Paket" />

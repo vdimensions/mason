@@ -17,11 +17,13 @@
     <authors>${company}</authors>
     <owners>${company}</owners>
     <copyright>${copyright}</copyright>
-    <dependencies></dependencies>
+    <dependencies>
+    </dependencies>
     <frameworkAssemblies></frameworkAssemblies>
     <references></references>
   </metadata>
   <files>
+    <!--<file src="build\*.props"                   target="build" />-->
     <file src="build\*.targets"                 target="build" />
     <file src="tools\Mason.Foundation.dll"      target="tools" />
     <file src="tools\Mason.VersionManager.dll"  target="tools" />

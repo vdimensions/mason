@@ -3,5 +3,6 @@
 GROUP build
 NUGET
   remote: ../../../dist
+    Mason.Targets.Packager (0.1.1.26)
     Mason.Targets.Preprocessor (0.1.1.13)
-    Mason.Targets.Verman (0.2.0.20)
+    Mason.Targets.Verman (0.2.0.33)
