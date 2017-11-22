@@ -1,0 +1,30 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MonoPath Condition="'$(MonoPath)' == '' And Exists('/Library/Frameworks/Mono.framework/Commands/mono')">/Library/Frameworks/Mono.framework/Commands/mono</MonoPath>
+    <MonoPath Condition="'$(MonoPath)' == ''">mono</MonoPath>
+
+    <CommandPrefix Condition=" '$(OS)' == 'Windows_NT'"></CommandPrefix>
+    <CommandPrefix Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319</CommandPrefix>
+
+    <ILRepack>$(CommandPrefix) $(ProjectDir)packages\build\ILRepack\tools\ILRepack.exe</ILRepack>
+  </PropertyGroup>
+
+  <Target Name="CopyTools" AfterTargets="BeforeBuild">
+    <ItemGroup>
+      <ToolFiles Include="$(OutputPath)*.dll" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ToolFiles)" DestinationFolder="$(ProjectDir)\tools" />
+  </Target>
+
+  <Target Name="CopyExe" AfterTargets="CopyTools">
+    <ItemGroup>
+      <ToolFiles Include="$(OutputPath)*.exe" />
+    </ItemGroup>
+    <Copy SourceFiles="@(ToolFiles)" DestinationFolder="$(ProjectDir)\tools" />
+  </Target>
+
+  <Target Name="ConsolidateDependencies" AfterTargets="CopyExe">
+    <Exec Command="$(ILRepack) /out:Mason.Foundation.dll Mason.Foundation.dll Kajabity.Tools.dll FSharp.Core.dll" WorkingDirectory="$(ProjectDir)tools" />
+    <Exec Command="$(ILRepack) /out:mason.exe mason.exe Mono.Options.dll" WorkingDirectory="$(ProjectDir)tools" />
+  </Target>
+</Project>

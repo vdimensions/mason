@@ -23,11 +23,8 @@
   </metadata>
   <files>
     <file src="build\*.targets"                 target="build" />
-    <file src="bin\*\FSharp.Core.dll"           target="tools" />
-    <file src="bin\*\Mason.Foundation.dll"      target="tools" />
-    <file src="bin\*\Mason.VersionManager.dll"  target="tools" />
-    <file src="bin\*\Mono.Options.dll"          target="tools" />
-    <file src="bin\*\Kajabity.Tools.dll"        target="tools" />
-    <file src="bin\*\mason.exe"                 target="tools" />
+    <file src="tools\Mason.Foundation.dll"      target="tools" />
+    <file src="tools\Mason.VersionManager.dll"  target="tools" />
+    <file src="tools\mason.exe"                 target="tools" />
   </files>
 </package>
