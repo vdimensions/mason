@@ -85,21 +85,6 @@
       <Project>{f46be8de-7918-48af-b19f-4d33a4fd6d79}</Project>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="..\..\packager\main\Mason.Packager.csproj">
-      <Name>Mason.Packager</Name>
-      <Project>{6522babd-3c5e-4204-bae2-5cbee501ce44}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\preprocessor\main\Mason.Preprocessor.csproj">
-      <Name>Mason.Preprocessor</Name>
-      <Project>{ca4b4216-2bc7-4469-bd26-b7466e172db7}</Project>
-      <Private>True</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\verman\main\Mason.VersionManager.csproj">
-      <Name>Mason.VersionManager</Name>
-      <Project>{db891c9b-9109-42ff-9f8c-f1aee9ac5ebb}</Project>
-      <Private>True</Private>
-    </ProjectReference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

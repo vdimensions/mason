@@ -3,7 +3,7 @@
   <metadata>
     <id>Mason.Targets.Verman</id>
     <title>Mason.Targets.Verman</title>
-    <version>0.1.1.13</version>
+    <version>0.2.0.17</version>
     <description>Mason MSBuild target for version management</description>
     <summary>Mason MSBuild target for version management</summary>
     <tags>Mason.Targets.Verman</tags>
@@ -22,8 +22,12 @@
     <references></references>
   </metadata>
   <files>
-    <file src="build\*.targets"      target="build" />
-    <file src="bin\*\Mason.Core.dll" target="tools" />
-    <file src="tools\*.exe"          target="tools" />
+    <file src="build\*.targets"                 target="build" />
+    <file src="bin\*\FSharp.Core.dll"           target="tools" />
+    <file src="bin\*\Mason.Foundation.dll"      target="tools" />
+    <file src="bin\*\Mason.VersionManager.dll"  target="tools" />
+    <file src="bin\*\Mono.Options.dll"          target="tools" />
+    <file src="bin\*\Kajabity.Tools.dll"        target="tools" />
+    <file src="bin\*\mason.exe"                 target="tools" />
   </files>
 </package>
