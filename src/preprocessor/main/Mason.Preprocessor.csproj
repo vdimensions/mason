@@ -52,9 +52,9 @@
     <None Include="Properties\AssemblyInfo.cs.template" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\core\primitives\Mason.Primitives.fsproj">
+    <ProjectReference Include="..\..\foundation\main\Mason.Foundation.fsproj">
       <Project>{f46be8de-7918-48af-b19f-4d33a4fd6d79}</Project>
-      <Name>Mason.Primitives</Name>
+      <Name>Mason.Foundation</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

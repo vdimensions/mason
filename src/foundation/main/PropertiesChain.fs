@@ -25,9 +25,7 @@ type PropertiesChain([<ParamArray>] props : IMasonProperties array) as self =
         member __.Keys with get() = self.Keys
         member __.Item with get(key) = self.[key]
 
-    interface IEnumerable<IMasonProperties> with
-        member __.GetEnumerator() = _chainedProperties.GetEnumerator()
+    interface IEnumerable<IMasonProperties> with member __.GetEnumerator() = _chainedProperties.GetEnumerator()
 
-    interface IEnumerable with
-        member __.GetEnumerator() = (_chainedProperties :> IEnumerable).GetEnumerator()
+    interface IEnumerable with member __.GetEnumerator() = (_chainedProperties :> IEnumerable).GetEnumerator()
 

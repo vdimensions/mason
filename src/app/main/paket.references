@@ -5,3 +5,4 @@ group build
   Mason.Targets.Packager
   Mason.Targets.Preprocessor
   Mason.Targets.Verman
+  ILRepack 

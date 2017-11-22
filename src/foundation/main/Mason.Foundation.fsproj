@@ -8,11 +8,11 @@
     <ProjectGuid>f46be8de-7918-48af-b19f-4d33a4fd6d79</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>primitives</RootNamespace>
-    <AssemblyName>Mason.Primitives</AssemblyName>
+    <AssemblyName>Mason.Foundation</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFSharpCoreVersion>4.3.0.0</TargetFSharpCoreVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
-    <Name>Mason.Primitives</Name>
+    <Name>Mason.Foundation</Name>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -23,7 +23,7 @@
     <OutputPath>bin\Debug\net40</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Debug\net40\Mason.Primitives.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\net40\Mason.Foundation.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,7 +32,7 @@
     <OutputPath>bin\Release\net40\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <WarningLevel>3</WarningLevel>
-    <DocumentationFile>bin\Release\net40\Mason.Primitives.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\net40\Mason.Foundation.XML</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />

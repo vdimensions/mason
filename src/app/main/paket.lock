@@ -5,6 +5,8 @@ NUGET
 
 GROUP build
 NUGET
+  remote: https://www.nuget.org/api/v2
+    ILRepack (2.0.14)
   remote: ../../../dist
     Mason.Targets.Packager (0.1.1.26)
     Mason.Targets.Preprocessor (0.1.1.13)

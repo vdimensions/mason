@@ -1,11 +1,11 @@
 ﻿namespace Mason.Sdk
 
+open System
 open System.Collections.Generic
 open Mason
 
+/// A module for abstracting out the command line arguments
 module Options =
-    open System
-    
     [<Interface>]
     type IOptionMap = 
         abstract member Resolve<'a> : name:string -> 'a
@@ -19,14 +19,14 @@ module Options =
             match data.TryGetValue name with
             | (true, v) -> 
                 match v with
-                | :?'a as  vv -> vv
+                | :? 'a as vv -> vv
                 | _ -> Unchecked.defaultof<'a>
             | (false, _) -> Unchecked.defaultof<'a>
         member __.ResolveFlag(name:string) =
             match data.TryGetValue name with
             | (true, v) -> 
                 match null2opt v with
-                | Some vv -> true
+                | Some _ -> true
                 | None -> false
             | (false, _) -> false
 

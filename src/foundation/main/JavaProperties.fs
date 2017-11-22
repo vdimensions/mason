@@ -19,14 +19,13 @@ type JavaProperties(file: FileInfo, encoding: Encoding) as self =
             let e = match null2opt encoding with Some e -> e | None -> Encoding.UTF8
             use stream = f.OpenRead()
             props.Load(stream, e)
-            // transfer the properties to a dictionary to use ordinal comparison and fix BOM
+            // transfer the properties to a dictionary to take advantage of ordinal comparison and to fix BOM
             for k in props.Keys.Cast<string>() do
                 // detect and remove any UTF8 BOM before parsing the properties to prevent a corrupted read
                 if (k.StartsWith("\uFEFF", StringComparison.Ordinal)) then
                     let properKey = k.Substring(1)
                     if (properKey.Length > 0) then _props.[properKey] <- props.GetProperty(k)
-                else 
-                    _props.[k] <- props.GetProperty(k)
+                else _props.[k] <- props.GetProperty(k)
         | None -> nullArg "file"
     member __.Update() = 
         let props = Kajabity.Tools.Java.JavaProperties()

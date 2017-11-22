@@ -6,7 +6,7 @@ open System.Runtime.InteropServices
 
 [<assembly: AssemblyTitle("mason")>]
 [<assembly: AssemblyProduct("mason")>]
-[<assembly: AssemblyDescription("Mason executable")>]
+[<assembly: AssemblyDescription("The mason executable")>]
 
 [<assembly: AssemblyCompany("Ivaylo Slavov")>]
 [<assembly: AssemblyCopyright("Copyright © Ivaylo Slavov 2017")>]
@@ -18,8 +18,8 @@ open System.Runtime.InteropServices
 [<assembly: ComVisible(false)>]
 [<assembly: Guid("7a94252c-7fc4-465d-92fa-1282bf322e15")>]
 
-[<assembly: AssemblyVersion("0.2.0.77")>]
-[<assembly: AssemblyFileVersion("0.2.0.77")>]
+[<assembly: AssemblyVersion("0.2.0.84")>]
+[<assembly: AssemblyFileVersion("0.2.0.84")>]
 
 do
     ()
