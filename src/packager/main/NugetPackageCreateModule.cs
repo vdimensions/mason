@@ -37,7 +37,7 @@ namespace Mason
                 var commands = cfgCommands.Split(new[] { CommandSeparator }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var command in commands)
                 {
-                    Console.WriteLine("Excuting command `{0}`", command);
+                    Console.WriteLine("Executing command `{0}`", command);
 
                     var indexOfSpace = command.IndexOf(' ');
                     var cmdName = command.Substring(0, indexOfSpace);

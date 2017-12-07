@@ -15,8 +15,8 @@ namespace Mason
         {
             var augmentedProperties = new DefaultProperties
             {
-                [PreprocessorSettings.Properties.TemplateFileExtension] = ".template",
-                [PreprocessorSettings.Properties.TemplateFileEncoding] = "UTF-8"
+                [PreprocessorSettings.Properties.TemplateFileExtension] = PreprocessorSettings.Defaults.TemplateFileExtension,
+                [PreprocessorSettings.Properties.TemplateFileEncoding] = PreprocessorSettings.Defaults.TemplateFileEncoding
             };
             return new PreprocessorSettings(new PropertiesChain(properties, augmentedProperties));
         }

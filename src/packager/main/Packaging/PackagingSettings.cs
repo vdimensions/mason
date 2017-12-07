@@ -7,7 +7,7 @@ namespace Mason.Packaging
     {
         public static class Properties
         {
-            public const string OutputLocation = "mason-packager.output.location";
+            public const string OutputLocation = "mason.packager.output.location";
         }
         public PackagingSettings(IMasonProperties properties) : base(properties)
         {

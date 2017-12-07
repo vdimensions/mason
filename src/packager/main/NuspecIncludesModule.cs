@@ -50,7 +50,8 @@ namespace Mason
                     doc = XDocument.Load(reader);
                 }
                 if (doc?.Root == null)
-                {// TODO: info
+                {
+                    // TODO: info
                     return;
                 }
                 var filesElement = doc.Root.Element(XName.Get("files"));

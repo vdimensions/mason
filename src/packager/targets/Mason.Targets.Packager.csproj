@@ -41,7 +41,6 @@
     <None Include="paket.references" />
     <None Include="paket.sh" />
     <None Include="Properties\AssemblyInfo.cs.template" />
-    <None Include="tools\mason-packager.exe" />
     <None Include="build\Mason.Targets.Packager.targets" />
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +52,9 @@
       <Project>{f46be8de-7918-48af-b19f-4d33a4fd6d79}</Project>
       <Name>Mason.Foundation</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="tools\" />
   </ItemGroup>
   <Target Name="CopyTools" AfterTargets="BeforeBuild">
     <ItemGroup>

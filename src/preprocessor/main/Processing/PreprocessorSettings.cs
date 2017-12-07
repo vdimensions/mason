@@ -11,7 +11,12 @@ namespace Mason.Processing
         public static class Properties
         {
             public const string TemplateFileExtension = "mason.preprocessor.template-file-extension";
-            public const string TemplateFileEncoding     = "mason.preprocessor.template-file-encoding";
+            public const string TemplateFileEncoding  = "mason.preprocessor.template-file-encoding";
+        }
+        public static class Defaults
+        {
+            public const string TemplateFileExtension = ".template";
+            public const string TemplateFileEncoding  = "UTF-8";
         }
 
         private readonly IMasonProperties _properties;

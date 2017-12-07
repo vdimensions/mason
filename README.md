@@ -7,9 +7,9 @@ This project was born out of my day-to-day struggle in managing the versioning a
 
 At the current state *mason* consists of 3 separate tools:
 
- - preprocessor
- - verman
- - packager
+- preprocessor
+- verman
+- packager
 
 The tools are bundled each into a respective MSBuild target, which means one just needs to install the target's relevant nuget package in order for the given tool start working on the given project. 
 
@@ -73,7 +73,7 @@ If for instance, this is a C# project, you may want to keep this information in 
 
 Below is an excerpt form the template with the relevant items reflected:
 
-    [assembly: AssemblyTitle("${id}")]    
+    [assembly: AssemblyTitle("${id}")]
     [assembly: AssemblyCompany("${author}")]
     [assembly: AssemblyCopyright("${copyright}")]
     [assembly: AssemblyVersion("${verison}")]
@@ -82,14 +82,14 @@ Below is an excerpt form the template with the relevant items reflected:
 
 And here is the produced result:
 
-    [assembly: AssemblyTitle("YourGreatProject")]    
+    [assembly: AssemblyTitle("YourGreatProject")]
     [assembly: AssemblyCompany("Your name or your company name")]
     [assembly: AssemblyCopyright("Copyright (c) Your name or your company name YEAR")]
     [assembly: AssemblyVersion("1.0.0.0")]
     [assembly: AssemblyFileVersion("1.0.0.0")]
     [assembly: AssemblyInformationalVersion("1.0.0.0")]
 
-Because the substitution occurs before the actual build process takes place, the expanded files will already be prepared for MSBuild to take them. 
+Because the substitution occurs before the actual build process takes place, the expanded files will already be prepared for MSBuild to take them.
 
 > Beware! Instead of editing the expanded file, update its corresponding template file. Otherwise the changes will be overwritten when the file is expaned again. A good approach is to include a short notice in the beginning of the template file saying the file is automatically regenerated and user changes could be lost.
 
@@ -100,13 +100,13 @@ The version manager tool is triggered during the `AfterBuild` phase. Its purpose
 
 At the current state, mason supports only incremental version updaes. In order to tell mason how to change your version, you need to:
 
- - define a custom property in the `mason.properties` reflecting the version component to be increased. In the above example, we have explicitly defined a `versiion.build` property.
+- define a custom property in the `mason.properties` reflecting the version component to be increased. In the above example, we have explicitly defined a `versiion.build` property.
 
- - make mason aware of the version property. This is done by adding the following line to your `mason.properties` file: 
+- make mason aware of the version property. This is done by adding the following line to your `mason.properties` file: 
 
        mason-verman.version-property-to-update = "version.build"
 
-   Now, mason will look for the `version.build` property and will increase its value after a successful build.
+  Now, mason will look for the `version.build` property and will increase its value after a successful build.
 
 
 ## Mason Packager ##
