@@ -13,6 +13,8 @@ type AbstractMasonSettings(properties: IMasonProperties) =
     member __.Location with get() = __.GetRequiredProperty(MasonContext.Properties.LocationKey)
     /// Gets a value representing the filesystem location of the current project file.
     member __.ProjectFile with get() = properties.[MasonContext.Properties.ProjectFileKey]
+    /// Gets a value representing the filesystem location of the current project directory.
+    member __.ProjectDir with get() = properties.[MasonContext.Properties.ProjectDirKey]
     /// Gets a value representing the filesystem location of the current projects' solution.
     /// <remarks>Can be <c>null</c>.</remarks>
     member __.SolutionDir with get() = properties.[MasonContext.Properties.SolutionDirKey]

@@ -9,7 +9,7 @@
     <ILRepack Condition=" '$(OS)' != 'Windows_NT'">$(MonoPath) --runtime=v4.0.30319 $(ProjectDir)packages/build/ILRepack/tools/ILRepack.exe</ILRepack>
   </PropertyGroup>
 
-  <Target Name="CopyDlls" AfterTargets="Build">
+  <Target Name="CopyDlls" AfterTargets="AfterBuild">
     <ItemGroup>
       <ToolFiles Include="$(OutputPath)*.dll" />
     </ItemGroup>

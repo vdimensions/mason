@@ -1,9 +1,13 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <Mason>$(CommandPrefix) &quot;$(MSBuildThisFileDirectory)..\tools\mason.exe&quot;</Mason>
+    <MonoPath Condition="'$(MonoPath)' == '' And Exists('/Library/Frameworks/Mono.framework/Commands/mono')">/Library/Frameworks/Mono.framework/Commands/mono</MonoPath>
+    <MonoPath Condition="'$(MonoPath)' == ''">mono</MonoPath>
+
+    <CommandPrefix Condition=" '$(OS)' == 'Windows_NT'"></CommandPrefix>
+    <CommandPrefix Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319</CommandPrefix>
   </PropertyGroup>
 
   <Target Name="PreprocessTemplates" AfterTargets="BeforeBuild">
-    <Exec Command="$(Mason) prep $(ProjectFile)" />
+    <Exec Command="$(CommandPrefix) &quot;$(MSBuildThisFileDirectory)..\tools\mason.exe&quot; prep &quot;$(MSBuildProjectDirectory)\$(MSBuildProjectFile)&quot;" />
   </Target>
 </Project>

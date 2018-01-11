@@ -11,6 +11,8 @@ namespace Mason
 {
     sealed class PreprocessorModule : AbstractMasonModule<PreprocessorSettings>
     {
+        private const string ModuleName = "prep";
+
         public override PreprocessorSettings CreateConfiguration(IMasonProperties properties)
         {
             var augmentedProperties = new DefaultProperties
@@ -25,9 +27,13 @@ namespace Mason
         {
             // TODO: check if different location is passed as an argument
 
-            var files = new DirectoryInfo(settings.Location).GetFiles(
+            Console.WriteLine($"Executing module {Name}");
+
+            var files = new DirectoryInfo(settings.ProjectDir).GetFiles(
                 settings.TemplateFilePattern,
                 SearchOption.AllDirectories);
+
+            Console.WriteLine($"Looking up {settings.ProjectDir} for {settings.TemplateFilePattern}, found {files.Length} matches");
 
             var templateExtension = settings.TemplateFileExtension;
 
@@ -53,6 +59,6 @@ namespace Mason
             }
         }
 
-        public override string Name => "prep";
+        public override string Name => ModuleName;
     }
 }

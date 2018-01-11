@@ -18,7 +18,6 @@
     <owners>${company}</owners>
     <copyright>${copyright}</copyright>
     <dependencies>
-      <dependency id="Mason.Targets.Common" version="${mason.version}" />
     </dependencies>
     <frameworkAssemblies></frameworkAssemblies>
     <references></references>

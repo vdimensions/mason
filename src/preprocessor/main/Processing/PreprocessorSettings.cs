@@ -25,7 +25,7 @@ namespace Mason.Processing
         {
             _properties = properties;
             TemplateFileExtension = string.Format($".{properties[Properties.TemplateFileExtension].TrimStart('.')}");
-            TemplateFilePattern = string.Format($"*{TemplateFileExtension}");
+            TemplateFilePattern = string.Format("*{0}", TemplateFileExtension);
             var enc = properties[Properties.TemplateFileEncoding];
             if (!string.IsNullOrEmpty(enc))
             {

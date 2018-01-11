@@ -4,7 +4,6 @@ source https://www.nuget.org/api/v2/
 
 group build
   source ../../../dist
-    nuget Mason.Targets.Common
     nuget Mason.Targets.Packager
     nuget Mason.Targets.Preprocessor
     nuget Mason.Targets.Verman
