@@ -25,22 +25,17 @@ namespace Mason
 
         public override void Run(PreprocessorSettings settings, Options.IOptionMap options)
         {
-            // TODO: check if different location is passed as an argument
-
-            Console.WriteLine($"Executing module {Name}");
-
             var files = new DirectoryInfo(settings.ProjectDir).GetFiles(
                 settings.TemplateFilePattern,
                 SearchOption.AllDirectories);
 
-            Console.WriteLine($"Looking up {settings.ProjectDir} for {settings.TemplateFilePattern}, found {files.Length} matches");
+            Console.WriteLine($"Looking up directory {settings.ProjectDir} for {settings.TemplateFilePattern}, found {files.Length} matches");
 
             var templateExtension = settings.TemplateFileExtension;
 
-            IList<FileReplacementPair> result = new List<FileReplacementPair>( );
+            IList<FileReplacementPair> result = new List<FileReplacementPair>();
             foreach (var rawFile in files.Where(f => f.FullName.EndsWith(templateExtension, StringComparison.OrdinalIgnoreCase)))
             {
-                //var extIndex = rawFile.FullName.LastIndexOf(templateExtension, StringComparison.Ordinal);
                 var targetFile = new FileInfo(rawFile.FullName.Substring(0, rawFile.FullName.Length - templateExtension.Length));
                 result.Add(new FileReplacementPair(rawFile, targetFile));
             }
