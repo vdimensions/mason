@@ -28,6 +28,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "verman", "verman", "{CB2F6E6F-8100-4A46-B769-201A7782606C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "targets", "targets", "{E0B20CA4-2A42-47DA-A3D0-800F675D5D74}"
+	ProjectSection(SolutionItems) = preProject
+		src\template-engine\main\Script.fsx = src\template-engine\main\Script.fsx
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "targets", "targets", "{F9D99581-A5E9-4A2A-AEF1-2AAFFB9B35FC}"
 EndProject
@@ -56,6 +59,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "targets", "targets", "{FE81E1E2-7E7F-46F5-B841-8A5CEA07DFF3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mason.Targets.Common", "src\foundation\targets\Mason.Targets.Common.csproj", "{2B96C6AA-30DE-4FA6-A3A2-D359667FE476}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Mason.TemplateEngine", "src\template-engine\main\Mason.TemplateEngine.fsproj", "{FA91189A-71C7-4DA3-B653-DB4668E6908B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,6 +142,14 @@ Global
 		{2B96C6AA-30DE-4FA6-A3A2-D359667FE476}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2B96C6AA-30DE-4FA6-A3A2-D359667FE476}.Release|x86.ActiveCfg = Release|Any CPU
 		{2B96C6AA-30DE-4FA6-A3A2-D359667FE476}.Release|x86.Build.0 = Release|Any CPU
+		{FA91189A-71C7-4DA3-B653-DB4668E6908B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA91189A-71C7-4DA3-B653-DB4668E6908B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA91189A-71C7-4DA3-B653-DB4668E6908B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{FA91189A-71C7-4DA3-B653-DB4668E6908B}.Debug|x86.Build.0 = Debug|Any CPU
+		{FA91189A-71C7-4DA3-B653-DB4668E6908B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA91189A-71C7-4DA3-B653-DB4668E6908B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA91189A-71C7-4DA3-B653-DB4668E6908B}.Release|x86.ActiveCfg = Release|Any CPU
+		{FA91189A-71C7-4DA3-B653-DB4668E6908B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -160,6 +173,7 @@ Global
 		{DC71E06A-F46E-4005-8C67-145D6D412A84} = {D8C43E57-8FB0-4808-86F4-FAFD7E561E10}
 		{FE81E1E2-7E7F-46F5-B841-8A5CEA07DFF3} = {849A370D-FCB3-4897-B004-1FC6C2F1E7EB}
 		{2B96C6AA-30DE-4FA6-A3A2-D359667FE476} = {FE81E1E2-7E7F-46F5-B841-8A5CEA07DFF3}
+		{FA91189A-71C7-4DA3-B653-DB4668E6908B} = {CDD79E32-D89C-4969-AED7-AD2702FB1CE3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {28A7D0D5-62EC-475D-BE30-D46B46D8242F}
