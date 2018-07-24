@@ -7,7 +7,7 @@
     <CommandPrefix Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319</CommandPrefix>
   </PropertyGroup>
 
-  <Target Name="DistributeBuildResults" AfterTargets="AfterBuild">
-    <Exec Command="$(CommandPrefix) &quot;$(MSBuildThisFileDirectory)..\tools\mason-packager.exe&quot; $(ProjectDir) $(ProjectName)$(ProjectExt)" />
+  <Target Name="MasonPack" AfterTargets="AfterBuild">
+    <Exec Command="$(CommandPrefix) &quot;$(MSBuildThisFileDirectory)..\tools\mason.exe&quot; pack &quot;$(MSBuildProjectDirectory)\$(MSBuildProjectFile)&quot; create purge" />
   </Target>
 </Project>

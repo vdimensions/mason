@@ -28,9 +28,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "verman", "verman", "{CB2F6E6F-8100-4A46-B769-201A7782606C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "targets", "targets", "{E0B20CA4-2A42-47DA-A3D0-800F675D5D74}"
-	ProjectSection(SolutionItems) = preProject
-		src\template-engine\main\Script.fsx = src\template-engine\main\Script.fsx
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "targets", "targets", "{F9D99581-A5E9-4A2A-AEF1-2AAFFB9B35FC}"
 EndProject

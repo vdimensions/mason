@@ -31,10 +31,12 @@ module MasonRunner =
         let probingDirectories: string list = [
             AppDomain.CurrentDomain.BaseDirectory;
             ]
-        probingDirectories 
-        |> Seq.map (fun d -> Directory.EnumerateFiles(d, AssemblySearchPattern) |> filterAssemblies)
-        |> Seq.collect (fun files -> files |> Seq.map loadAssembly)
-        |> Seq.choose id |> Seq.toList
+        let probedAssemblies: Assembly list = 
+            probingDirectories 
+            |> Seq.map (fun d -> Directory.EnumerateFiles(d, AssemblySearchPattern) |> filterAssemblies)
+            |> Seq.collect (fun files -> files |> Seq.map loadAssembly)
+            |> Seq.choose id |> Seq.toList
+        List.append probedAssemblies (AppDomain.CurrentDomain.GetAssemblies() |> Seq.toList)
 
     let isModuleType (t: Type) = 
         t.IsClass && not t.IsAbstract && typedefof<IMasonModule>.IsAssignableFrom(t)
@@ -66,7 +68,12 @@ module MasonRunner =
                 // TODO: let the module itself determine if a project name was specified
                 let projectName = remainder.Head
                 let options = optionParser.Parse(Array.ofList remainder.Tail)
-                let properties = MasonConfiguration.Get(Environment.CurrentDirectory, projectName)
+                let location = 
+                    try Path.GetDirectoryName(projectName)
+                    with 
+                    | _ -> Environment.CurrentDirectory;
+
+                let properties = MasonConfiguration.Get(location, projectName)
                 m.Run(properties, options)
             | None -> ()
 

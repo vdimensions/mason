@@ -1,3 +1,6 @@
+source https://www.nuget.org/api/v2/
+  nuget Kajabity.Tools.Java
+
 group build
   source ../../../dist
     nuget Mason.Targets.Preprocessor

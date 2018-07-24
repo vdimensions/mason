@@ -7,7 +7,7 @@
     <CommandPrefix Condition=" '$(OS)' != 'Windows_NT' ">$(MonoPath) --runtime=v4.0.30319</CommandPrefix>
   </PropertyGroup>
 
-  <Target Name="PreprocessTemplates" AfterTargets="BeforeBuild">
+  <Target Name="MasonPreprocessTemplates" AfterTargets="BeforeBuild">
     <Exec Command="$(CommandPrefix) &quot;$(MSBuildThisFileDirectory)..\tools\mason.exe&quot; prep &quot;$(MSBuildProjectDirectory)\$(MSBuildProjectFile)&quot;" />
   </Target>
 </Project>

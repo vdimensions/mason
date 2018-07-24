@@ -26,8 +26,15 @@
   </Target>
 
   <Target Name="ConsolidateDependencies" AfterTargets="CopyExe" Condition="Exists('$(ToolsDir)Mason.Foundation.dll')">
-    <Exec Command="$(ILRepack) /out:Mason.Foundation.dll Mason.Foundation.dll Kajabity.Tools.dll FSharp.Core.dll" WorkingDirectory="$(ToolsDir)" />
-    <Exec Command="$(ILRepack) /out:mason.exe mason.exe Mono.Options.dll" WorkingDirectory="$(ToolsDir)" />
-    <Message Text="Calling ConsolidateDependencies from Mason.Targets.ConsolidateDependencies.targets" Importance="high" />
+    <!-- <Exec Command="$(ILRepack) /out:Mason.Foundation.dll Mason.Foundation.dll FSharp.Core.dll Kajabity.Tools.Java.dll" WorkingDirectory="$(ToolsDir)" /> -->
+    <!-- <Exec Command="$(ILRepack) /out:mason.exe mason.exe Mono.Options.dll" WorkingDirectory="$(ToolsDir)" /> -->
+    <!--  -->
+    <!-- <Exec Command="$(ILRepack) /out:mason.exe mason.exe Mono.Options.dll Mason.Foundation.dll FSharp.Core.dll Kajabity.Tools.Java.dll" WorkingDirectory="$(ToolsDir)" /> -->
+  </Target>
+  <Target Name="ILRepackCleanUp" AfterTargets="ConsolidateDependencies">
+    <!-- <Exec Command="erase FSharp.Core.dll" WorkingDirectory="$(ToolsDir)" /> -->
+    <!-- <Exec Command="erase Kajabity.Tools.Java.dll" WorkingDirectory="$(ToolsDir)" /> -->
+    <!-- <Exec Command="erase Mono.Options.dll" WorkingDirectory="$(ToolsDir)" /> -->
+    <!-- <Exec Command="erase Mason.Foundation.dll" WorkingDirectory="$(ToolsDir)" /> -->
   </Target>
 </Project>

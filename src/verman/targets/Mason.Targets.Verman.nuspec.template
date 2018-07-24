@@ -23,10 +23,7 @@
     <references></references>
   </metadata>
   <files>
-    <!--<file src="build\*.props"                   target="build" />-->
     <file src="build\*.targets"                 target="build" />
-    <file src="tools\Mason.Foundation.dll"      target="tools" />
-    <file src="tools\Mason.VersionManager.dll"  target="tools" />
-    <file src="tools\mason.exe"                 target="tools" />
+    <file src="tools\**"                        target="tools" />
   </files>
 </package>

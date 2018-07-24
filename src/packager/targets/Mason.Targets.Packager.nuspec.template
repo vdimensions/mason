@@ -22,8 +22,7 @@
     <references></references>
   </metadata>
   <files>
-    <file src="build\*.targets"      target="build" />
-    <file src="bin\*\Mason.Core.dll" target="tools" />
-    <file src="tools\*.exe"          target="tools" />
+    <file src="build\*.targets"                 target="build" />
+    <file src="tools\**"                        target="tools" />
   </files>
 </package>

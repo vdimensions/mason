@@ -24,8 +24,6 @@
   </metadata>
   <files>
     <file src="build\*.targets"                 target="build" />
-    <file src="tools\Mason.Foundation.dll"      target="tools" />
-    <file src="tools\Mason.Preprocessor.dll"    target="tools" />
-    <file src="tools\mason.exe"                 target="tools" />
+    <file src="tools\**"                        target="tools" />
   </files>
 </package>

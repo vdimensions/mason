@@ -1,5 +1,4 @@
 ﻿namespace Mason
-open System
 
 [<AutoOpen>]
 module internal Null =

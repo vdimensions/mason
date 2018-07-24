@@ -1,5 +1,5 @@
 source https://www.nuget.org/api/v2/
-  nuget Kajabity.Tools
+  nuget Kajabity.Tools.Java
   nuget Mono.Options
 
 group build
@@ -7,3 +7,5 @@ group build
     nuget Mason.Targets.Packager
     nuget Mason.Targets.Preprocessor
     nuget Mason.Targets.Verman
+  source https://www.nuget.org/api/v2/
+    nuget ILRepack 

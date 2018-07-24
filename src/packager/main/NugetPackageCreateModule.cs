@@ -47,7 +47,8 @@ namespace Mason
                     {
                         WindowStyle = ProcessWindowStyle.Hidden,
                         FileName = cmdName,
-                        Arguments = cmdArgs
+                        Arguments = cmdArgs,
+                        WorkingDirectory = config.Location
                     };
 
                     var process = new Process { StartInfo = startInfo };

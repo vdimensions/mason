@@ -9,7 +9,7 @@ open System.Runtime.InteropServices
 [<assembly: AssemblyDescription("Mason foundation library")>]
 
 [<assembly: AssemblyCompany("Ivaylo Slavov")>]
-[<assembly: AssemblyCopyright("Copyright © Ivaylo Slavov 2017")>]
+[<assembly: AssemblyCopyright("Copyright © Ivaylo Slavov 2017-2018")>]
 [<assembly: AssemblyTrademark("")>]
 
 [<assembly: AssemblyConfiguration("")>]
@@ -18,8 +18,8 @@ open System.Runtime.InteropServices
 [<assembly: ComVisible(false)>]
 [<assembly: Guid("f46be8de-7918-48af-b19f-4d33a4fd6d79")>]
 
-[<assembly: AssemblyVersion("0.2.0.221")>]
-[<assembly: AssemblyFileVersion("0.2.0.221")>]
+[<assembly: AssemblyVersion("0.2.0.246")>]
+[<assembly: AssemblyFileVersion("0.2.0.246")>]
 
 do
     ()

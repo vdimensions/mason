@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyDescription("Small program used to update the version number in mason.properties")]
 
 [assembly: AssemblyCompany("Ivaylo Slavov")]
-[assembly: AssemblyCopyright("Copyright © Ivaylo Slavov 2017")]
+[assembly: AssemblyCopyright("Copyright © Ivaylo Slavov 2017-2018")]
 [assembly: AssemblyTrademark("")]
 
 [assembly: AssemblyConfiguration("")]
@@ -16,6 +16,6 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 [assembly: Guid("f4da7fa8-c9ff-48f6-880c-35d4c70490db")]
 
-[assembly: AssemblyVersion("0.2.0.67")]
-[assembly: AssemblyFileVersion("0.2.0.67")]
-[assembly: AssemblyInformationalVersion("0.2.0.67")]
+[assembly: AssemblyVersion("0.2.0.73")]
+[assembly: AssemblyFileVersion("0.2.0.73")]
+[assembly: AssemblyInformationalVersion("0.2.0.73")]
