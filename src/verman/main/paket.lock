@@ -513,5 +513,5 @@ NUGET
 GROUP build
 NUGET
   remote: ../../../dist
-    Mason.Targets.Preprocessor (0.2.0.68)
-    Mason.Targets.Verman (0.2.0.40)
+    Mason.Targets.Preprocessor (0.2.0.78)
+    Mason.Targets.Verman (0.2.0.50)

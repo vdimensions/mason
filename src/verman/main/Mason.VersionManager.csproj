@@ -37,8 +37,11 @@
     <Content Include="NOTICE.txt">
       <Paket>True</Paket>
     </Content>
+    <Compile Include="Versioning\MSBuildVersionIncrementer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Versioning\SimpleVersionIncrementer.cs" />
     <Compile Include="VermanModule.cs" />
+    <Compile Include="Versioning\VersionIncrementer.cs" />
     <Compile Include="Versioning\VersioningSettings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

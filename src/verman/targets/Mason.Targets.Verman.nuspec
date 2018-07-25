@@ -3,7 +3,7 @@
   <metadata>
     <id>Mason.Targets.Verman</id>
     <title>Mason.Targets.Verman</title>
-    <version>0.2.0.49</version>
+    <version>0.2.0.51</version>
     <description>Mason MSBuild target for version management</description>
     <summary>Mason MSBuild target for version management</summary>
     <tags>Mason.Targets.Verman</tags>

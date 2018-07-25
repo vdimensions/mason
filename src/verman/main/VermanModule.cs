@@ -15,12 +15,29 @@ namespace Mason
             var defaults = new DefaultProperties
             {
                 [VersioningSettings.Properties.VersionPropertyToUpdateKey] = "version.revision",
-                [VersioningSettings.Properties.ConfigFileEncodingKey] = "UTF-8"
+                [VersioningSettings.Properties.ConfigFileEncodingKey] = "UTF-8",
+                [VersioningSettings.Properties.VersionMajorKey] = "0",
+                [VersioningSettings.Properties.VersionMinorKey] = "0",
+                [VersioningSettings.Properties.VersionBuildKey] = "0",
+                [VersioningSettings.Properties.VersionRevisionKey] = "1",
+                [VersioningSettings.Properties.VersionKey] = string.Format(
+                        "${{{0}}}.${{{1}}}.${{{2}}}.${{{3}}}",
+                        VersioningSettings.Properties.VersionMajorKey,
+                        VersioningSettings.Properties.VersionMinorKey,
+                        VersioningSettings.Properties.VersionBuildKey,
+                        VersioningSettings.Properties.VersionRevisionKey),
+                [VersioningSettings.Properties.VersionIncrementStrategyKey] = MSBuildVersionIncrementer.Name,
             };
             return new VersioningSettings(new PropertiesChain(properties, defaults));
         }
 
-        public void UpdateConfig(VersioningSettings settings, IDictionary<string, object> newData)
+        private readonly IDictionary<string, VersionIncrementer> _versionIncrementers = new Dictionary<string, VersionIncrementer>(StringComparer.OrdinalIgnoreCase)
+        {
+            {SimpleVersionIncrementer.Name, new SimpleVersionIncrementer()},
+            {MSBuildVersionIncrementer.Name, new MSBuildVersionIncrementer()}
+        };
+
+        public void UpdateConfig(VersioningSettings settings, IDictionary<string, string> newData)
         {
             var lines = File.ReadAllLines(settings.ConfigFile.FullName, settings.ConfigFileEncoding);
             var updates = 0;
@@ -45,17 +62,19 @@ namespace Mason
 
         public override void Run(VersioningSettings settings, Options.IOptionMap options)
         {
-            var versionPropertyName = settings.VersionPropertyToUpdate;
-            var versionPropertyValue = settings.GetRequiredProperty(versionPropertyName);
-            if (!int.TryParse(versionPropertyValue, out var version))
+            if (_versionIncrementers.TryGetValue(settings.VersionIncrementStrategy, out var incrementer))
             {
-                Console.WriteLine($"Invalid version number: {versionPropertyValue}");
-                return;
+                UpdateConfig(settings, incrementer.Update(settings));
             }
-            UpdateConfig(settings, new Dictionary<string, object>{{versionPropertyName, ++version}});
+            else
+            {
+                throw new NotSupportedException($"Unknown version increment strategy '{settings.VersionIncrementStrategy}'. ");
+            }
         }
 
         public override string Name => "verman";
     }
 }
+
+
 
