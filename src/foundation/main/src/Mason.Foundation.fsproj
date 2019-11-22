@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Axle.Core" Version="1.7.*" />
+    <PackageReference Include="Axle.FSharp" Version="1.7.*" />
     <PackageReference Include="Axle.Resources.Java" Version="1.7.*" />
     <PackageReference Include="Axle.Application" Version="1.7.*" />
   </ItemGroup>
