@@ -1,1 +1,0 @@
-./paket.sh update

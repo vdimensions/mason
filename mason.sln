@@ -19,9 +19,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "main", "main", "{45F34329-B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "targets", "targets", "{0EEE6E64-5AED-489C-9799-C92841CF4964}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mason.Packager", "src\packager\main\Mason.Packager.csproj", "{6522BABD-3C5E-4204-BAE2-5CBEE501CE44}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mason.Packager", "src\packager\main\src\Mason.Packager.csproj", "{6522BABD-3C5E-4204-BAE2-5CBEE501CE44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mason.Targets.Packager", "src\packager\targets\Mason.Targets.Packager.csproj", "{E94B0F08-1292-4CD4-8573-623F1B690A1F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mason.Targets.Packager", "src\packager\main\targets\Mason.Targets.Packager.csproj", "{E94B0F08-1292-4CD4-8573-623F1B690A1F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "preprocessor", "preprocessor", "{4A92CABE-A2B4-46D7-9FB6-A8BB0D4C86FB}"
 EndProject
@@ -45,7 +45,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mason.VersionManager", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mason.Targets.Verman", "src\verman\targets\Mason.Targets.Verman.csproj", "{BA832B3C-F31F-496B-ACF9-6994CC884021}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Mason.Foundation", "src\foundation\main\Mason.Foundation.fsproj", "{F46BE8DE-7918-48AF-B19F-4D33A4FD6D79}"
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Mason.Foundation", "src\foundation\main\src\Mason.Foundation.fsproj", "{F46BE8DE-7918-48AF-B19F-4D33A4FD6D79}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "mason", "src\app\main\mason.fsproj", "{7A94252C-7FC4-465D-92FA-1282BF322E15}"
 EndProject

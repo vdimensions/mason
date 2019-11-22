@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <ProjectGuid>f46be8de-7918-48af-b19f-4d33a4fd6d79</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>primitives</RootNamespace>
+    <AssemblyName>Mason.Foundation</AssemblyName>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Name>Mason.Foundation</Name>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="mason.properties" />
+    <None Include="paket-update.sh" />
+    <None Include="paket.sh" />
+    <None Include="paket.references" />
+    <None Include="paket.dependencies" />
+    <None Include="paket.lock" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="NullHandling.fs" />
+    <Compile Include="Rop.fs" />
+    <Compile Include="IMasonProperties.fs" />
+    <Compile Include="PropertiesChain.fs" />
+    <Compile Include="Expander.fsi" />
+    <Compile Include="Expander.fs" />
+    <Compile Include="EnvironmentProperties.fs" />
+    <Compile Include="DefaultProperties.fs" />
+    <Compile Include="JavaProperties.fs" />
+    <Compile Include="ExpandableProperties.fs" />
+    <Compile Include="MasonContext.fs" />
+    <Compile Include="MasonConfiguration.fsi" />
+    <Compile Include="MasonConfiguration.fs" />
+    <Compile Include="Sdk\Options.fs" />
+    <Compile Include="Sdk\IMasonModule.fs" />
+    <Compile Include="Sdk\CompositeModule.fs" />
+    <Compile Include="Sdk\MasonRunner.fsi" />
+    <Compile Include="Sdk\MasonRunner.fs" />
+    <Compile Include="Sdk\AbstractMasonModule.fs" />
+    <Compile Include="Sdk\AbstractMasonSettings.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Axle.Core" Version="1.7.*" />
+    <PackageReference Include="Axle.Resources.Java" Version="1.7.*" />
+    <PackageReference Include="Axle.Application" Version="1.7.*" />
+  </ItemGroup>
+  <Import Project="../../../Mason.Common.targets" />
+</Project>

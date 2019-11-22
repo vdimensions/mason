@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ProjectGuid>{6522BABD-3C5E-4204-BAE2-5CBEE501CE44}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>Mason.Packager</AssemblyName>
+    <RootNamespace>Mason</RootNamespace>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DefineConstants>DEBUG;PACKAGER</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DefineConstants>PACKAGER</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Axle.Core" Version="1.7.*" />
+    <PackageReference Include="Axle.Resources.Java" Version="1.7.*" />
+    <PackageReference Include="Axle.Application" Version="1.7.*" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\foundation\main\src\Mason.Foundation.fsproj" />
+  </ItemGroup>
+</Project>

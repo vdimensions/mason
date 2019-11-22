@@ -1,8 +1,0 @@
-source https://www.nuget.org/api/v2/
-  nuget Kajabity.Tools.Java
-
-group build
-  source ../../../dist
-    nuget Mason.Targets.Preprocessor
-    nuget Mason.Targets.Verman
-    nuget Mason.Targets.Packager

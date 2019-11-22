@@ -1,0 +1,3 @@
+[submodule "submodules/vdimensions_msbuild_sdk"]
+	path = submodules/vdimensions_msbuild_sdk
+	url = https://github.com/vdimensions/vdimensions_msbuild_sdk.git

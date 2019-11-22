@@ -76,18 +76,18 @@ namespace Mason.Packaging
                 }
             }
 
-            if (settings.OutputAutoRemove)
-            {
-                var groups = Directory.GetFiles(outputLocation)
-                    .Select(x => new FileInfo(x))
-                    .Where(x => x.Extension.EndsWith("nupkg", StringComparison.OrdinalIgnoreCase))
-                    .GroupBy(GetCommonPackagePart, StringComparer.OrdinalIgnoreCase);
-                foreach (var gr in groups)
-                foreach (var fi in gr.OrderByDescending(y => y.CreationTime).Skip(1))
-                {
-                    fi.Delete( );
-                }
-            }
+            //if (settings.OutputAutoRemove)
+            //{
+            //    var groups = Directory.GetFiles(outputLocation)
+            //        .Select(x => new FileInfo(x))
+            //        .Where(x => x.Extension.EndsWith("nupkg", StringComparison.OrdinalIgnoreCase))
+            //        .GroupBy(GetCommonPackagePart, StringComparer.OrdinalIgnoreCase);
+            //    foreach (var gr in groups)
+            //    foreach (var fi in gr.OrderByDescending(y => y.CreationTime).Skip(1))
+            //    {
+            //        fi.Delete( );
+            //    }
+            //}
         }
 
         private static void ProcessPackageIncludes(
@@ -122,23 +122,23 @@ namespace Mason.Packaging
                 {
                     return;
                 }
-                var filesEelement = doc.Root.Element(XName.Get("files"));
-                if (filesEelement == null)
+                var filesElement = doc.Root.Element(XName.Get("files"));
+                if (filesElement == null)
                 {
                     doc.Root.Add(new XElement("files"));
-                    filesEelement = doc.Root.Element(XName.Get("files"));
+                    filesElement = doc.Root.Element(XName.Get("files"));
                 }
                 foreach (var packageInclude in includes)
                 {
-                    if (settings.ExcludeMissingFiles && !File.Exists(Path.Combine(location, packageInclude.Source)))
-                    {
-                        continue;                        
-                    }
+                    //if (settings.ExcludeMissingFiles && !File.Exists(Path.Combine(location, packageInclude.Source)))
+                    //{
+                    //    continue;                        
+                    //}
                     var includeElement = new XElement(
                         "file",
                         new XAttribute("src", Expander.Expand(config, packageInclude.Source)),
                         new XAttribute("target", Expander.Expand(config, packageInclude.Destination)));
-                    filesEelement.Add(includeElement);
+                    filesElement.Add(includeElement);
                 }
 
                 using (var writer = new StreamWriter(nupkg, false, Encoding.UTF8))

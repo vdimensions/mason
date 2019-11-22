@@ -52,7 +52,7 @@
       <Project>{7a94252c-7fc4-465d-92fa-1282bf322e15}</Project>
       <Name>mason</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\foundation\main\Mason.Foundation.fsproj">
+    <ProjectReference Include="..\..\foundation\main\src\Mason.Foundation.fsproj">
       <Project>{f46be8de-7918-48af-b19f-4d33a4fd6d79}</Project>
       <Name>Mason.Foundation</Name>
     </ProjectReference>
