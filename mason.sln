@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "_", "_", "{60A2F5B2-0B22-4992-8A56-7CF84EBF1DDD}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,7 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "main", "main", "{45F34329-B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "targets", "targets", "{0EEE6E64-5AED-489C-9799-C92841CF4964}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mason.Packager", "src\packager\main\src\Mason.Packager.csproj", "{6522BABD-3C5E-4204-BAE2-5CBEE501CE44}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mason.Packager", "src\packager\main\src\Mason.Packager.csproj", "{6522BABD-3C5E-4204-BAE2-5CBEE501CE44}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mason.Targets.Packager", "src\packager\main\targets\Mason.Targets.Packager.csproj", "{E94B0F08-1292-4CD4-8573-623F1B690A1F}"
 EndProject
@@ -45,7 +45,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mason.VersionManager", "src
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mason.Targets.Verman", "src\verman\targets\Mason.Targets.Verman.csproj", "{BA832B3C-F31F-496B-ACF9-6994CC884021}"
 EndProject
-Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Mason.Foundation", "src\foundation\main\src\Mason.Foundation.fsproj", "{F46BE8DE-7918-48AF-B19F-4D33A4FD6D79}"
+Project("{6EC3EE1D-3C4E-46DD-8F32-0CC8E7565705}") = "Mason.Foundation", "src\foundation\main\src\Mason.Foundation.fsproj", "{F46BE8DE-7918-48AF-B19F-4D33A4FD6D79}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "mason", "src\app\main\mason.fsproj", "{7A94252C-7FC4-465D-92FA-1282BF322E15}"
 EndProject
@@ -58,6 +58,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mason.Targets.Common", "src\foundation\targets\Mason.Targets.Common.csproj", "{2B96C6AA-30DE-4FA6-A3A2-D359667FE476}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Mason.TemplateEngine", "src\template-engine\main\Mason.TemplateEngine.fsproj", "{FA91189A-71C7-4DA3-B653-DB4668E6908B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Mason", "codebase\core\main\src\Mason.csproj", "{294FF838-6826-4E05-AB49-A9D0A9FD57A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -147,6 +149,14 @@ Global
 		{FA91189A-71C7-4DA3-B653-DB4668E6908B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FA91189A-71C7-4DA3-B653-DB4668E6908B}.Release|x86.ActiveCfg = Release|Any CPU
 		{FA91189A-71C7-4DA3-B653-DB4668E6908B}.Release|x86.Build.0 = Release|Any CPU
+		{294FF838-6826-4E05-AB49-A9D0A9FD57A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{294FF838-6826-4E05-AB49-A9D0A9FD57A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{294FF838-6826-4E05-AB49-A9D0A9FD57A4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{294FF838-6826-4E05-AB49-A9D0A9FD57A4}.Debug|x86.Build.0 = Debug|Any CPU
+		{294FF838-6826-4E05-AB49-A9D0A9FD57A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{294FF838-6826-4E05-AB49-A9D0A9FD57A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{294FF838-6826-4E05-AB49-A9D0A9FD57A4}.Release|x86.ActiveCfg = Release|Any CPU
+		{294FF838-6826-4E05-AB49-A9D0A9FD57A4}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
