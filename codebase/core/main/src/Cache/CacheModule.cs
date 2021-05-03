@@ -1,3 +1,5 @@
+using Axle.Modularity;
+
 namespace Mason.Cache
 {
     [Module]

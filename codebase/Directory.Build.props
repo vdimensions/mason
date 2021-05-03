@@ -1,0 +1,14 @@
+<Project>
+  <PropertyGroup>
+    <RestoreSources>https://api.nuget.org/v3/index.json;$(RestoreSources)</RestoreSources>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <RestoreSources>https://ci.appveyor.com/nuget/axle;$(RestoreSources)</RestoreSources>
+    <AxleVersion>2.0.*</AxleVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <FakeVersion>5.19.0</FakeVersion>
+  </PropertyGroup>
+</Project>

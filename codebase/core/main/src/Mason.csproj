@@ -5,10 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Axle.Application" Version="1.8.*" />
-    <PackageReference Include="Axle.Core" Version="1.8.*" />
-    <PackageReference Include="Fake.Core.Target" Version="5.19.0" />
-    <PackageReference Include="Fake.DotNet.Cli" Version="5.19.0" />
-    <PackageReference Include="Fake.IO.FileSystem" Version="5.19.0" />
+    <PackageReference Include="Axle.Application" Version="$(AxleVersion)" />
+    <PackageReference Include="Axle.Core" Version="$(AxleVersion)" />
+    <PackageReference Include="Fake.Core.Target" Version="$(FakeVersion)" />
+    <PackageReference Include="Fake.DotNet.Cli" Version="$(FakeVersion)" />
+    <PackageReference Include="Fake.IO.FileSystem" Version="$(FakeVersion)" />
   </ItemGroup>
 </Project>
